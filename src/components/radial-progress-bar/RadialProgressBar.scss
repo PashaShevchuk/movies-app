@@ -1,0 +1,170 @@
+// -- vars
+$bg-color: #34495e;
+$default-size: 1em;
+$label-font-size: $default-size / 4;
+$label-font-size-redo: $default-size * 4;
+
+// -- mixins
+@mixin size($width, $height) {
+  height: $height;
+  width: $width;
+}
+
+@mixin draw-progress($progress, $color) {
+  .pie {
+    .half-circle {
+      border-color: $color;
+    }
+
+    .left-side {
+      transform: rotate($progress * 3.6deg);
+    }
+
+    @if $progress <= 50 {
+      .right-side {
+        display: none;
+      }
+    } @else {
+      clip: rect(auto, auto, auto, auto);
+
+      .right-side {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+@mixin draw-progress--solid($progress, $color, $bg-color) {
+  background: linear-gradient(to right, $color 50%, $bg-color 50%);
+
+  &:before {
+    @if $progress <= 50 {
+      background: $bg-color;
+      transform: rotate((100 - (50 - $progress)) / 100 * 360deg * -1);
+    } @else {
+      background: $color;
+      transform: rotate((100 - $progress) / 100 * 360deg);
+    }
+  }
+}
+
+// -- selectors
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+.my-progress-bar {
+  font-size: 46px;
+  font-weight: bold;
+  position: relative;
+  bottom: 60px;
+  left: 198px;
+}
+
+.pie-wrapper {
+  @include size($default-size, $default-size);
+  float: left;
+  margin: 15px;
+  position: relative;
+
+  &:nth-child(3n + 1) {
+    clear: both;
+  }
+
+  .pie {
+    @include size(100%, 100%);
+    clip: rect(0, $default-size, $default-size, $default-size / 2);
+    left: 0;
+    position: absolute;
+    top: 0;
+
+    .half-circle {
+      @include size(100%, 100%);
+      border: ($default-size / 10) solid #3498db;
+      border-radius: 50%;
+      clip: rect(0, $default-size / 2, $default-size, 0);
+      left: 0;
+      position: absolute;
+      top: 0;
+    }
+  }
+
+  .label {
+    background: #081c22;
+    border-radius: 50%;
+    top: 0.2em;
+    bottom: 0.2em;
+    left: 0.2em;
+    right: 0.2em;
+    line-height: 2em;
+    cursor: default;
+    display: block;
+    font-size: 0.34em;
+    position: absolute;
+    text-align: center;
+
+    .smaller {
+      font-size: .50em;
+      vertical-align: super;
+    }
+  }
+
+  .shadow {
+    @include size(100%, 100%);
+    border: $default-size / 10 solid #bdc3c7;
+    border-radius: 50%;
+  }
+
+  &.style-2 {
+    .label {
+      color: white;
+
+      .smaller {
+        color: #bdc3c7;
+      }
+    }
+  }
+
+  &.progress-10 {
+    @include draw-progress(10, #ff0000);
+  }
+
+  &.progress-20 {
+    @include draw-progress(20, #ff4800);
+  }
+
+  &.progress-30 {
+    @include draw-progress(30, #ff7700);
+  }
+
+  &.progress-40 {
+    @include draw-progress(40, #ffa200);
+  }
+
+  &.progress-50 {
+    @include draw-progress(50, #ffd500);
+  }
+
+  &.progress-60 {
+    @include draw-progress(60, #eeff00);
+  }
+
+  &.progress-70 {
+    @include draw-progress(70, #64d500);
+  }
+
+  &.progress-80 {
+    @include draw-progress(80, #00d20b);
+  }
+
+  &.progress-90 {
+    @include draw-progress(90, #00c40b);
+  }
+
+  &.progress-100 {
+    @include draw-progress(100, #029c02);
+  }
+}
+
