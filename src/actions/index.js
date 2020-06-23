@@ -1,45 +1,15 @@
-import {
-    MOVIES_LOADED,
-    START_MOVIES_LOADIND,
-    ERROR_LOADIND_MOVIES,
-    STOP_MOVIES_LOADIND
-} from "../action-types";
-import {apiKey} from "../constants";
+import {GET_MOVIES, SEARCH_MOVIES} from "../action-types";
 
-
-//======================================================================================================================
-export const getMovies = () => {
-    return (dispatch, getState) => {
-        dispatch(startMoviesLoading());
-
-        return fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`)
-            .then(response => response.json())
-            .then((data) => {
-                dispatch({
-                    type: MOVIES_LOADED,
-                    payload: data.results
-                });
-                dispatch(stopMoviesLoading());
-
-            })
-            .catch((error) => {
-                dispatch({
-                    type: ERROR_LOADIND_MOVIES,
-                    payload: error
-                })
-            })
-    }
-};
-
-export const startMoviesLoading = () => {
+export const getMovies = (movie) => {
     return {
-        type: START_MOVIES_LOADIND
+        type: GET_MOVIES,
+        payload: movie
     }
 };
 
-export const stopMoviesLoading = () => {
+export const searchMovies = (movie) => {
     return {
-        type: STOP_MOVIES_LOADIND
+        type: SEARCH_MOVIES,
+        payload: movie
     }
 };
-//======================================================================================================================

@@ -1,29 +1,23 @@
 import {combineReducers} from 'redux';
-import {MOVIES_LOADED, START_MOVIES_LOADIND, STOP_MOVIES_LOADIND} from "../action-types";
+import {GET_MOVIES, SEARCH_MOVIES} from "../action-types";
 
 const defaultValue = {
     movies: [],
-    isMoviesLoading: false
+    foundMovies: []
 };
 
 const moviesReducer = (store = defaultValue, action) => {
     switch (action.type) {
-        case MOVIES_LOADED: {
+        case GET_MOVIES: {
             return {
                 ...store,
                 movies: action.payload
             }
         }
-        case START_MOVIES_LOADIND: {
+        case SEARCH_MOVIES: {
             return {
                 ...store,
-                isMoviesLoading: true
-            }
-        }
-        case STOP_MOVIES_LOADIND: {
-            return {
-                ...store,
-                isMoviesLoading: false
+                foundMovies: action.payload
             }
         }
         default:
