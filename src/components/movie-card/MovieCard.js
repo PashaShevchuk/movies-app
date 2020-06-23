@@ -15,6 +15,7 @@ export const MovieCard = (props) => {
     } else {
         movieDate = 'Release date unknown';
     }
+
     return (
         <div className="movie-card">
             <div className="movie-card-img">

@@ -14,7 +14,6 @@ class MoviesList extends Component {
 
     componentDidMount() {
         this.loadMovies();
-
     }
 
     loadMovies = async () => {

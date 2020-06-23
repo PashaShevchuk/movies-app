@@ -1,6 +1,6 @@
 import React from "react";
-import './SearchField.scss';
 import searchIcon from '../../assets/search-icon.png'
+import './SearchField.scss';
 
 export const SearchField = (props) => {
     return (
