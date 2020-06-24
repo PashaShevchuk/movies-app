@@ -92,22 +92,22 @@ class MainPage extends Component {
         }
     }
 //======================================================================================================================
-    viewMovieInfo = (id) => {
-        // let filteredMovie;
-        // this.state.movies.forEach((movie, i) => {
-        //     if(movie.id === id) {
-        //         filteredMovie = movie
-        //     }
-        // })
-        // this.setState({ currentMovie: filteredMovie })
-        const filteredMovie = this.props.foundMovies.filter(movie => movie.id === id);
-        const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
-        this.setState({ currentMovie: filteredMovie });
-    }
-
-    closeMovieInfo = () => {
-        this.setState({ currentMovie: null })
-    }
+//     viewMovieInfo = (id) => {
+//         // let filteredMovie;
+//         // this.state.movies.forEach((movie, i) => {
+//         //     if(movie.id === id) {
+//         //         filteredMovie = movie
+//         //     }
+//         // })
+//         // this.setState({ currentMovie: filteredMovie })
+//         const filteredMovie = this.props.foundMovies.filter(movie => movie.id === id);
+//         const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
+//         this.setState({ currentMovie: filteredMovie });
+//     }
+//
+//     closeMovieInfo = () => {
+//         this.setState({ currentMovie: null })
+//     }
 //======================================================================================================================
     render() {
         let numberPages = Math.floor(this.state.totalResults / 20);
