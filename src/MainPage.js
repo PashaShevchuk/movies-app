@@ -10,6 +10,7 @@ import {Header} from "./components/header/Header";
 import FoundMovies from './components/found-movies/FoundMovies'
 import {MoviesList} from "./components/movies-list/MoviesList";
 import {Pagination} from "./components/pagination/Pagination";
+import {Footer} from "./components/footer/Footer";
 import {searchMovies, getMovies} from "./actions";
 import {apiKey} from "./constants";
 
@@ -140,6 +141,7 @@ class MainPage extends Component {
                     {/*</Route>*/}
                     <Redirect from="/" to="/movies" exact/>
                 </Switch>
+                <Footer/>
             </Router>
         );
     }
