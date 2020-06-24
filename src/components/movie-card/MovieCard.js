@@ -28,6 +28,7 @@ export const MovieCard = (props) => {
                 {title}
             </div>
             <div className="movie-card-date">{movieDate}</div>
+            <div><a href="">Details</a></div>
         </div>
     );
 };
