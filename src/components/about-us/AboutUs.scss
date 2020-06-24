@@ -1,0 +1,45 @@
+.about-container {
+  background-color: #26272b;
+  padding: 45px 0 20px;
+  font-size: 15px;
+  line-height: 24px;
+  color: #737373;
+  text-align: justify;
+
+  h6 {
+    color: #fff;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-top: 5px;
+    letter-spacing: 2px
+  }
+}
+
+.movie-logo {
+  width: 150px;
+  margin-bottom: 10px;
+}
+
+ol {
+  list-style: none;
+  padding: 0;
+  color: #ccc;
+}
+
+span {
+  position: absolute;
+  line-height: 25px;
+}
+
+.number {
+  font: bold 24pt helvetica, arial, sans-serif;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.paragraph-text {
+  font-size: 15px;
+  line-height: 24px;
+  color: #737373;
+  padding-left: 60px;
+}

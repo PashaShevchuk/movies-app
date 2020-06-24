@@ -11,6 +11,7 @@ import FoundMovies from './components/found-movies/FoundMovies'
 import {MoviesList} from "./components/movies-list/MoviesList";
 import {Pagination} from "./components/pagination/Pagination";
 import {Footer} from "./components/footer/Footer";
+import {AboutUs} from "./components/about-us/AboutUs";
 import {searchMovies, getMovies} from "./actions";
 import {apiKey} from "./constants";
 
@@ -139,6 +140,9 @@ class MainPage extends Component {
                     {/*<Route path="/search">*/}
                     {/*    <FoundMovies/>*/}
                     {/*</Route>*/}
+                    <Route path="/about-us">
+                        <AboutUs/>
+                    </Route>
                     <Redirect from="/" to="/movies" exact/>
                 </Switch>
                 <Footer/>

@@ -7,8 +7,8 @@ export const links = [{
     name: 'TV Shows',
     url: '/tv-shows'
 }, {
-    name: "About",
-    url: '/about'
+    name: "About Us",
+    url: '/about-us'
 },
 ];
 
