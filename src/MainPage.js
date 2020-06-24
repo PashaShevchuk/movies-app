@@ -135,6 +135,9 @@ class MainPage extends Component {
                             error={this.state.error}
                         />
                     </Route>
+                    {/*<Route path="/search">*/}
+                    {/*    <FoundMovies/>*/}
+                    {/*</Route>*/}
                     <Redirect from="/" to="/movies" exact/>
                 </Switch>
             </Router>
