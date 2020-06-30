@@ -22,8 +22,6 @@ class MainPage extends Component {
         errorSearch: '',
         searchTerm: '',
         totalResults: 0,
-        currentPage: 1,
-        currentMovie: null
     }
 
     componentDidMount() {
@@ -33,7 +31,9 @@ class MainPage extends Component {
     loadMovies = async () => {
         const {getMovies} = this.props;
         this.setState({isLoading: true});
+        // let response = await fetch(`https://api.themoviedb.org/3/discover/tv/?api_key=${apiKey}`); * for TV series *
         let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`);
+
         if (response.ok) {
             let json = await response.json();
             const {results} = json;
