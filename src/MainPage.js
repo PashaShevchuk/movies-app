@@ -9,7 +9,6 @@ import {
 import {Header} from "./components/header/Header";
 import {MoviesList} from "./components/movies-list/MoviesList";
 import {Pagination} from "./components/pagination/Pagination";
-import FoundMovies from './components/found-movies/FoundMovies'
 import {AboutUs} from "./components/about-us/AboutUs";
 import {Footer} from "./components/footer/Footer";
 import {searchMovies, getMovies} from "./actions";
@@ -118,7 +117,6 @@ class MainPage extends Component {
                     </Route>
 
                     <Route path="/found-movies">
-                        {/*<FoundMovies/>*/}
                         <MoviesList
                             movies={this.props.foundMovies}
                             isLoading={this.state.isMovieSearch}
