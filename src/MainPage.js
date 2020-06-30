@@ -7,11 +7,11 @@ import {
     Redirect
 } from "react-router-dom";
 import {Header} from "./components/header/Header";
-import FoundMovies from './components/found-movies/FoundMovies'
 import {MoviesList} from "./components/movies-list/MoviesList";
 import {Pagination} from "./components/pagination/Pagination";
-import {Footer} from "./components/footer/Footer";
+import FoundMovies from './components/found-movies/FoundMovies'
 import {AboutUs} from "./components/about-us/AboutUs";
+import {Footer} from "./components/footer/Footer";
 import {searchMovies, getMovies} from "./actions";
 import {apiKey} from "./constants";
 
@@ -92,44 +92,19 @@ class MainPage extends Component {
                 searchMovies(results)
             }
         }
+        window.scrollTo(0,0);
     }
-//======================================================================================================================
-//     viewMovieInfo = (id) => {
-//         // let filteredMovie;
-//         // this.state.movies.forEach((movie, i) => {
-//         //     if(movie.id === id) {
-//         //         filteredMovie = movie
-//         //     }
-//         // })
-//         // this.setState({ currentMovie: filteredMovie })
-//         const filteredMovie = this.props.foundMovies.filter(movie => movie.id === id);
-//         const newCurrentMovie = filteredMovie.length > 0 ? filteredMovie[0] : null;
-//         this.setState({ currentMovie: filteredMovie });
-//     }
-//
-//     closeMovieInfo = () => {
-//         this.setState({ currentMovie: null })
-//     }
-//======================================================================================================================
+
     render() {
         let numberPages = Math.floor(this.state.totalResults / 20);
+
         return (
             <Router>
+
                 <Header handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
-                {
-                    (this.state.totalResults > 20 && this.state.currentMovie === null)
-                        ? <Pagination pages={numberPages}
-                                      nextPage={this.nextPage}
-                                      currentPage={this.state.currentPage}/>
-                        : ''
-                }
-                <FoundMovies/>
-                {/*<MoviesList*/}
-                {/*    movies={this.props.foundMovies}*/}
-                {/*    isLoading={this.state.isMovieSearch}*/}
-                {/*    error={this.state.errorSearch}*/}
-                {/*/>*/}
+
                 <Switch>
+
                     <Route path="/movies" exact>
                         <MoviesList
                             movies={this.props.movies}
@@ -137,15 +112,28 @@ class MainPage extends Component {
                             error={this.state.error}
                         />
                     </Route>
-                    {/*<Route path="/search">*/}
-                    {/*    <FoundMovies/>*/}
-                    {/*</Route>*/}
+
+                    <Route path="/found-movies">
+                        <FoundMovies/>
+                        {
+                            (this.state.totalResults > 20 && this.state.currentMovie === null)
+                                ? <Pagination pages={numberPages}
+                                              nextPage={this.nextPage}
+                                              currentPage={this.state.currentPage}/>
+                                : ''
+                        }
+                    </Route>
+
                     <Route path="/about-us">
                         <AboutUs/>
                     </Route>
+
                     <Redirect from="/" to="/movies" exact/>
+
                 </Switch>
+
                 <Footer/>
+
             </Router>
         );
     }

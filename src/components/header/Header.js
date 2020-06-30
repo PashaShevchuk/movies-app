@@ -1,11 +1,16 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {withRouter} from 'react-router';
 import {links} from "../../constants";
 import logo from './logo512.png';
 import {SearchField} from "../search-field/SearchField";
 import './Header.scss';
 
-export const Header = (props) => {
+const HeaderComponent = (props) => {
+    const {history, handleSubmit, handleChange} = props;
+    const toFoundMovies = () => {
+        history.push('/found-movies');
+    };
     return (
         <div className="header navbar">
             <img src={logo} className="header-logo" alt="logotype"/>
@@ -19,8 +24,14 @@ export const Header = (props) => {
                         );
                     })
                 }
-                <SearchField handleSubmit={props.handleSubmit} handleChange={props.handleChange}/>
+                <SearchField
+                    handleSubmit={handleSubmit}
+                    handleChange={handleChange}
+                    toFoundMovies={toFoundMovies}
+                />
             </div>
         </div>
     );
 };
+
+export const Header = withRouter(HeaderComponent);
