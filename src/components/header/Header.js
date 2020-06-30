@@ -7,8 +7,9 @@ import {SearchField} from "../search-field/SearchField";
 import './Header.scss';
 
 const HeaderComponent = (props) => {
-    const {history, handleSubmit, handleChange} = props;
+    const {history, handleSubmit, handleChange, searchTerm} = props;
     const toFoundMovies = () => {
+        if (searchTerm === '') return;
         history.push('/found-movies');
     };
     return (

@@ -58,6 +58,7 @@ class MainPage extends Component {
     }
 
     handleSubmit = async (e) => {
+        if (this.state.searchTerm === '') return;
         e.preventDefault()
         const {searchMovies} = this.props;
         this.setState({isMovieSearch: true});
@@ -92,7 +93,7 @@ class MainPage extends Component {
                 searchMovies(results)
             }
         }
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     }
 
     render() {
@@ -101,7 +102,10 @@ class MainPage extends Component {
         return (
             <Router>
 
-                <Header handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
+                <Header searchTerm={this.state.searchTerm}
+                        handleSubmit={this.handleSubmit}
+                        handleChange={this.handleChange}
+                />
 
                 <Switch>
 
@@ -114,7 +118,12 @@ class MainPage extends Component {
                     </Route>
 
                     <Route path="/found-movies">
-                        <FoundMovies/>
+                        {/*<FoundMovies/>*/}
+                        <MoviesList
+                            movies={this.props.foundMovies}
+                            isLoading={this.state.isMovieSearch}
+                            error={this.state.errorSearch}
+                        />
                         {
                             (this.state.totalResults > 20 && this.state.currentMovie === null)
                                 ? <Pagination pages={numberPages}
