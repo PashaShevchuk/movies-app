@@ -22,6 +22,8 @@ class MainPage extends Component {
         errorSearch: '',
         searchTerm: '',
         totalResults: 0,
+        currentPage: 1,
+        currentMovie: null
     }
 
     componentDidMount() {
@@ -82,6 +84,7 @@ class MainPage extends Component {
     }
 
     nextPage = async (pageNumber) => {
+        window.scrollTo(0, 0);
         const {searchMovies} = this.props;
         let response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${this.state.searchTerm}&page=${pageNumber}`);
         if (response.ok) {
@@ -92,7 +95,6 @@ class MainPage extends Component {
                 searchMovies(results)
             }
         }
-        window.scrollTo(0, 0);
     }
 
     render() {
