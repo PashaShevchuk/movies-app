@@ -16,8 +16,13 @@ import {apiKey} from "./constants";
 
 class MainPage extends Component {
     state = {
+        // For movies
         isLoading: false,
         error: '',
+        movieTotalResults: 0,
+        movieCurrentPage: 1,
+
+        // To search movies
         isMovieSearch: false,
         errorSearch: '',
         searchTerm: '',
@@ -30,14 +35,16 @@ class MainPage extends Component {
         this.loadMovies();
     }
 
+//=================================== For movies =======================================================================
+
     loadMovies = async () => {
         const {getMovies} = this.props;
         this.setState({isLoading: true});
         // let response = await fetch(`https://api.themoviedb.org/3/discover/tv/?api_key=${apiKey}`); * for TV series *
         let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`);
-
         if (response.ok) {
             let json = await response.json();
+            this.setState({movieTotalResults: json.total_results})
             const {results} = json;
             if (Array.isArray(results)) {
                 this.setState({
@@ -54,6 +61,22 @@ class MainPage extends Component {
         }
     }
 
+    movieNextPage = async (pageNumber) => {
+        window.scrollTo(0, 0);
+        const {getMovies} = this.props;
+        let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${pageNumber}`);
+        if (response.ok) {
+            let json = await response.json();
+            this.setState({movieTotalResults: json.total_results, movieCurrentPage: pageNumber})
+            const {results} = json;
+            if (Array.isArray(results)) {
+                getMovies(results)
+            }
+        }
+    }
+//______________________________________________________________________________________________________________________
+
+//=================================== To search movies =================================================================
     handleChange = (e) => {
         this.setState({searchTerm: e.target.value})
     }
@@ -97,8 +120,13 @@ class MainPage extends Component {
         }
     }
 
+//______________________________________________________________________________________________________________________
+
+    
+
     render() {
-        let numberPages = Math.floor(this.state.totalResults / 20);
+        let movieNumberPages = Math.floor(this.state.movieTotalResults / 20); // For movies
+        let numberPages = Math.floor(this.state.totalResults / 20);           // To search movies
 
         return (
             <Router>
@@ -111,18 +139,23 @@ class MainPage extends Component {
                 <Switch>
 
                     <Route path="/movies" exact>
-                        <MoviesList
-                            movies={this.props.movies}
-                            isLoading={this.state.isLoading}
-                            error={this.state.error}
+                        <MoviesList movies={this.props.movies}
+                                    isLoading={this.state.isLoading}
+                                    error={this.state.error}
                         />
+                        {
+                            (this.state.movieTotalResults > 20 && this.state.currentMovie === null)
+                                ? <Pagination pages={movieNumberPages}
+                                              nextPage={this.movieNextPage}
+                                              currentPage={this.state.movieCurrentPage}/>
+                                : ''
+                        }
                     </Route>
 
                     <Route path="/found-movies">
-                        <MoviesList
-                            movies={this.props.foundMovies}
-                            isLoading={this.state.isMovieSearch}
-                            error={this.state.errorSearch}
+                        <MoviesList movies={this.props.foundMovies}
+                                    isLoading={this.state.isMovieSearch}
+                                    error={this.state.errorSearch}
                         />
                         {
                             (this.state.totalResults > 20 && this.state.currentMovie === null)
