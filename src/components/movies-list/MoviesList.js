@@ -1,5 +1,5 @@
 import React from 'react';
-import {MovieCard} from "../movie-card/MovieCard";
+import MovieCard from "../movie-card/MovieCard";
 import {FetchError} from "../fetch-error/FetchError";
 import './MovieList.scss';
 

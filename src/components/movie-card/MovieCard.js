@@ -1,11 +1,14 @@
 import React from "react";
-import './MovieCard.scss'
+import {withRouter} from 'react-router';
+import {Link} from 'react-router-dom';
 import {RadialProgressBar} from "../radial-progress-bar/RadialProgressBar";
 import defaultImage from '../../assets/default-movie-portrait.jpg';
+import './MovieCard.scss'
 
-export const MovieCard = (props) => {
-    const {movie} = props;
+const MovieCard = (props) => {
+    const {movie, match: {url, params: {id}}} = props;
     const {title, release_date, poster_path, vote_average} = movie;
+
     let movieDate = '';
     if (release_date) {
         const date = new Date(release_date)
@@ -28,7 +31,11 @@ export const MovieCard = (props) => {
                 {title}
             </div>
             <div className="movie-card-date">{movieDate}</div>
-            <div><a href="">Details</a></div>
+            <div>
+                {!id && <Link to={`${url}/${movie.id}`}>Show details</Link>}
+            </div>
         </div>
     );
 };
+
+export default withRouter(MovieCard);

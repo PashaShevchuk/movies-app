@@ -11,6 +11,7 @@ import {MoviesList} from "./components/movies-list/MoviesList";
 import {Pagination} from "./components/pagination/Pagination";
 import {AboutUs} from "./components/about-us/AboutUs";
 import {Footer} from "./components/footer/Footer";
+import {MovieDetails} from "./components/movie-details/MovieDetails";
 import {searchMovies, getMovies} from "./actions";
 import {apiKey} from "./constants";
 
@@ -122,8 +123,6 @@ class MainPage extends Component {
 
 //______________________________________________________________________________________________________________________
 
-    
-
     render() {
         let movieNumberPages = Math.floor(this.state.movieTotalResults / 20); // For movies
         let numberPages = Math.floor(this.state.totalResults / 20);           // To search movies
@@ -165,6 +164,12 @@ class MainPage extends Component {
                                 : ''
                         }
                     </Route>
+
+                    <Route path="/movies/:id"
+                           render={(routerProps) => {
+                               return (<MovieDetails {...routerProps} />);
+                           }}
+                    />
 
                     <Route path="/about-us">
                         <AboutUs/>
