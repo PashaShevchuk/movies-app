@@ -2,12 +2,16 @@ import React from "react";
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
 import {RadialProgressBar} from "../radial-progress-bar/RadialProgressBar";
+import {genres} from "../../constants";
 import defaultImage from '../../assets/default-movie-portrait.jpg';
 import './MovieCard.scss'
 
 const MovieCard = (props) => {
     const {movie, match: {url, params: {id}}} = props;
-    const {title, release_date, poster_path, vote_average} = movie;
+    const {title, release_date, poster_path, vote_average, genre_ids} = movie;
+
+    let movieGenres = [];
+    genre_ids.forEach(id => movieGenres.push(genres.find(item => item.id === id)));
 
     let movieDate = '';
     if (release_date) {
@@ -26,14 +30,24 @@ const MovieCard = (props) => {
                      alt={title}
                 />
             </div>
-            <div className="movie-card-title">
+
+            <div className="movie-card-progress-bar">
                 <RadialProgressBar rating={vote_average}/>
-                {title}
             </div>
+            <div className='d-flex flex-wrap genres'>
+                {
+                    !!movieGenres.length && movieGenres.map(genre => <div key={genre.id} className="movie-genres">{genre.name}</div>)
+                }
+            </div>
+            <div className="movie-card-title">{title}</div>
+
+
+
+
             <div className="movie-card-date">{movieDate}</div>
-            <div>
-                {!id && <Link to={`${url}/${movie.id}`}>Show details</Link>}
-            </div>
+            {/*<div>*/}
+            {/*    {!id && <Link to={`${url}/${movie.id}`}>Show details</Link>}*/}
+            {/*</div>*/}
         </div>
     );
 };

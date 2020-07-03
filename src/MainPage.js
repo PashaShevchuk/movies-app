@@ -29,7 +29,6 @@ class MainPage extends Component {
         searchTerm: '',
         totalResults: 0,
         currentPage: 1,
-        currentMovie: null
     }
 
     componentDidMount() {
@@ -143,24 +142,10 @@ class MainPage extends Component {
                                     error={this.state.error}
                         />
                         {
-                            (this.state.movieTotalResults > 20 && this.state.currentMovie === null)
+                            (this.state.movieTotalResults > 20)
                                 ? <Pagination pages={movieNumberPages}
                                               nextPage={this.movieNextPage}
                                               currentPage={this.state.movieCurrentPage}/>
-                                : ''
-                        }
-                    </Route>
-
-                    <Route path="/found-movies">
-                        <MoviesList movies={this.props.foundMovies}
-                                    isLoading={this.state.isMovieSearch}
-                                    error={this.state.errorSearch}
-                        />
-                        {
-                            (this.state.totalResults > 20 && this.state.currentMovie === null)
-                                ? <Pagination pages={numberPages}
-                                              nextPage={this.nextPage}
-                                              currentPage={this.state.currentPage}/>
                                 : ''
                         }
                     </Route>
@@ -170,6 +155,27 @@ class MainPage extends Component {
                                return (<MovieDetails {...routerProps} />);
                            }}
                     />
+
+                    <Route path="/found-movies/:id"
+                           render={(routerProps) => {
+                               return (<MovieDetails {...routerProps} />);
+                           }}
+                    />
+
+                    <Route path="/found-movies">
+                        <MoviesList movies={this.props.foundMovies}
+                                    isLoading={this.state.isMovieSearch}
+                                    error={this.state.errorSearch}
+                        />
+                        {
+                            (this.state.totalResults > 20)
+                                ? <Pagination pages={numberPages}
+                                              nextPage={this.nextPage}
+                                              currentPage={this.state.currentPage}/>
+                                : ''
+                        }
+                    </Route>
+
 
                     <Route path="/about-us">
                         <AboutUs/>

@@ -36,7 +36,6 @@ export class MovieDetails extends Component {
 
     render() {
         const {movie, isLoading, error} = this.state;
-        console.log(movie);
         return (
             <div>
                 <div>Movie Details Page</div>
