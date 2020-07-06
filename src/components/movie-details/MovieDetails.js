@@ -34,6 +34,10 @@ export class MovieDetails extends Component {
         }
     };
 
+    addToWatchlist = () => {
+        
+    }
+
     render() {
         const {movie, isLoading, error} = this.state;
         return (
@@ -51,6 +55,10 @@ export class MovieDetails extends Component {
                 {
                     !!error && (<FetchError error={error}/>)
                 }
+
+                <div>
+                    <button onClick={this.addToWatchlist}>Add to your watchlist</button>
+                </div>
             </div>
         );
     }

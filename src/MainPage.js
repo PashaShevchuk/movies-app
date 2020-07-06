@@ -12,7 +12,7 @@ import {Pagination} from "./components/pagination/Pagination";
 import {AboutUs} from "./components/about-us/AboutUs";
 import {Footer} from "./components/footer/Footer";
 import {MovieDetails} from "./components/movie-details/MovieDetails";
-import {searchMovies, getMovies} from "./actions";
+import {searchMovies, getMovies, getTVShows} from "./actions";
 import {apiKey} from "./constants";
 
 class MainPage extends Component {
@@ -22,6 +22,12 @@ class MainPage extends Component {
         error: '',
         movieTotalResults: 0,
         movieCurrentPage: 1,
+
+        // For TV shows
+        isTVShowsLoading: false,
+        errorTVShows: '',
+        TVShowsTotalResults: 0,
+        TVShowsCurrentPage: 1,
 
         // To search movies
         isMovieSearch: false,
@@ -33,6 +39,7 @@ class MainPage extends Component {
 
     componentDidMount() {
         this.loadMovies();
+        this.loadTVShows();
     }
 
 //=================================== For movies =======================================================================
@@ -75,6 +82,49 @@ class MainPage extends Component {
         }
     }
 //______________________________________________________________________________________________________________________
+
+
+//=================================== For TV shows ====================================================================
+
+    loadTVShows = async () => {
+        const {getTVShows} = this.props;
+        this.setState({isTVShowsLoading: true});
+        let response = await fetch(`https://api.themoviedb.org/3/discover/tv/?api_key=${apiKey}`);
+        if (response.ok) {
+            let json = await response.json();
+            this.setState({TVShowsTotalResults: json.total_results})
+            const {results} = json;
+            if (Array.isArray(results)) {
+                this.setState({
+                    isTVShowsLoading: false,
+                    errorTVShows: '',
+                });
+                getTVShows(results)
+            }
+        } else {
+            this.setState({
+                isTVShowsLoading: false,
+                errorTVShows: response.status,
+            });
+        }
+    }
+
+    TVShowsNextPage = async (pageNumber) => {
+        window.scrollTo(0, 0);
+        const {getTVShows} = this.props;
+        let response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&page=${pageNumber}`);
+        if (response.ok) {
+            let json = await response.json();
+            this.setState({TVShowsTotalResults: json.total_results, TVShowsCurrentPage: pageNumber})
+            const {results} = json;
+            if (Array.isArray(results)) {
+                getTVShows(results)
+            }
+        }
+    }
+
+//______________________________________________________________________________________________________________________
+
 
 //=================================== To search movies =================================================================
     handleChange = (e) => {
@@ -124,6 +174,7 @@ class MainPage extends Component {
 
     render() {
         let movieNumberPages = Math.floor(this.state.movieTotalResults / 20); // For movies
+        let tvShowsNumberPages = Math.floor(this.state.TVShowsTotalResults / 20); // For TV shows
         let numberPages = Math.floor(this.state.totalResults / 20);           // To search movies
 
         return (
@@ -155,6 +206,20 @@ class MainPage extends Component {
                                return (<MovieDetails {...routerProps} />);
                            }}
                     />
+
+                    <Route path="/tv-shows" exact>
+                        <MoviesList movies={this.props.tvShows}
+                                    isLoading={this.state.isTVShowsLoading}
+                                    error={this.state.errorTVShows}
+                        />
+                        {
+                            (this.state.TVShowsTotalResults > 20)
+                                ? <Pagination pages={tvShowsNumberPages}
+                                              nextPage={this.TVShowsNextPage}
+                                              currentPage={this.state.TVShowsCurrentPage}/>
+                                : ''
+                        }
+                    </Route>
 
                     <Route path="/found-movies/:id"
                            render={(routerProps) => {
@@ -197,13 +262,15 @@ const mapStateToProps = (store) => {
     const {moviesReducer} = store;
     return {
         movies: moviesReducer.movies,
+        tvShows: moviesReducer.tvShows,
         foundMovies: moviesReducer.foundMovies
     }
 };
 
 const mapDispatchToProps = ({
     getMovies,
-    searchMovies
+    searchMovies,
+    getTVShows
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

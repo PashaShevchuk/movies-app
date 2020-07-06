@@ -1,8 +1,9 @@
 import {combineReducers} from 'redux';
-import {GET_MOVIES, SEARCH_MOVIES} from "../action-types";
+import {GET_MOVIES, GET_TV_SHOWS, SEARCH_MOVIES} from "../action-types";
 
 const defaultValue = {
     movies: [],
+    tvShows: [],
     foundMovies: []
 };
 
@@ -12,6 +13,12 @@ const moviesReducer = (store = defaultValue, action) => {
             return {
                 ...store,
                 movies: action.payload
+            }
+        }
+        case GET_TV_SHOWS: {
+            return {
+                ...store,
+                tvShows: action.payload
             }
         }
         case SEARCH_MOVIES: {
