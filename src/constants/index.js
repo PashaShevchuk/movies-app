@@ -7,6 +7,9 @@ export const links = [{
     name: 'TV Shows',
     url: '/tv-shows'
 }, {
+    name: "Watchlist",
+    url: '/watchlist'
+}, {
     name: "About Us",
     url: '/about-us'
 },

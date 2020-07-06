@@ -11,7 +11,8 @@ import {MoviesList} from "./components/movies-list/MoviesList";
 import {Pagination} from "./components/pagination/Pagination";
 import {AboutUs} from "./components/about-us/AboutUs";
 import {Footer} from "./components/footer/Footer";
-import {MovieDetails} from "./components/movie-details/MovieDetails";
+import MovieDetails from "./components/movie-details/MovieDetails";
+import Watchlist from "./components/watchlist/Watchlist";
 import {searchMovies, getMovies, getTVShows} from "./actions";
 import {apiKey} from "./constants";
 
@@ -241,6 +242,9 @@ class MainPage extends Component {
                         }
                     </Route>
 
+                    <Route path="/watchlist">
+                        <Watchlist/>
+                    </Route>
 
                     <Route path="/about-us">
                         <AboutUs/>

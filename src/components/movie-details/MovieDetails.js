@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import {apiKey} from "../../constants";
 import {FetchError} from "../fetch-error/FetchError";
+import {addToWatchlist} from "../../actions";
+import {connect} from "react-redux";
 
-export class MovieDetails extends Component {
+class MovieDetails extends Component {
     state = {
         movie: null,
         isLoading: false,
@@ -35,7 +37,11 @@ export class MovieDetails extends Component {
     };
 
     addToWatchlist = () => {
-        
+        const {movie} = this.state;
+        const {addToWatchlist, watchlist} = this.props;
+        addToWatchlist(movie);
+        console.log(watchlist);
+
     }
 
     render() {
@@ -63,3 +69,16 @@ export class MovieDetails extends Component {
         );
     }
 }
+
+const mapStateToProps = (store) => {
+    const {moviesReducer} = store;
+    return {
+        watchlist: moviesReducer.watchlist
+    }
+};
+
+const mapDispatchToProps = ({
+    addToWatchlist
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails);

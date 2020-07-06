@@ -1,4 +1,4 @@
-import {GET_MOVIES, GET_TV_SHOWS, SEARCH_MOVIES} from "../action-types";
+import {GET_MOVIES, GET_TV_SHOWS, SEARCH_MOVIES, ADD_TO_WATCHLIST} from "../action-types";
 
 export const getMovies = (movie) => {
     return {
@@ -18,5 +18,12 @@ export const searchMovies = (movie) => {
     return {
         type: SEARCH_MOVIES,
         payload: movie
+    }
+};
+
+export const addToWatchlist = (data) => {
+    return {
+        type: ADD_TO_WATCHLIST,
+        payload: data
     }
 };

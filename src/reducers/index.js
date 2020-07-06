@@ -1,10 +1,11 @@
 import {combineReducers} from 'redux';
-import {GET_MOVIES, GET_TV_SHOWS, SEARCH_MOVIES} from "../action-types";
+import {GET_MOVIES, GET_TV_SHOWS, SEARCH_MOVIES, ADD_TO_WATCHLIST} from "../action-types";
 
 const defaultValue = {
     movies: [],
     tvShows: [],
-    foundMovies: []
+    foundMovies: [],
+    watchlist: []
 };
 
 const moviesReducer = (store = defaultValue, action) => {
@@ -26,6 +27,24 @@ const moviesReducer = (store = defaultValue, action) => {
                 ...store,
                 foundMovies: action.payload
             }
+        }
+        case ADD_TO_WATCHLIST: {
+            const {payload} = action;
+            const {watchlist} = store;
+            const index = watchlist.findIndex(value => value.id === payload.id);
+            if (index === -1) {
+                return {
+                    ...store,
+                    watchlist: [...watchlist, payload]
+                }
+            } else if (index >= 0) {
+                const watchlistCopy = [...watchlist];
+                watchlistCopy.splice(index, 1);
+                return {
+                    ...store,
+                    watchlist: watchlistCopy
+                }
+            } else return store;
         }
         default:
             return store;
