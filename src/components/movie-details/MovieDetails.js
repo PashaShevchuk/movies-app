@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
 import {apiKey} from "../../constants";
 import {FetchError} from "../fetch-error/FetchError";
 import {addToWatchlist} from "../../actions";
-import {connect} from "react-redux";
+import {MovieDetailsCard} from "../movie-details-card/MovieDetailsCard";
 
 class MovieDetails extends Component {
     state = {
@@ -46,9 +47,10 @@ class MovieDetails extends Component {
 
     render() {
         const {movie, isLoading, error} = this.state;
+        console.log(movie);
+
         return (
             <div>
-                <div>Movie Details Page</div>
                 {
                     isLoading && (
                         <div className="text-center m-2">
@@ -62,9 +64,9 @@ class MovieDetails extends Component {
                     !!error && (<FetchError error={error}/>)
                 }
 
-                <div>
-                    <button onClick={this.addToWatchlist}>Add to your watchlist</button>
-                </div>
+                {
+                    !isLoading && movie && <MovieDetailsCard movie={movie} addToWatchlist={this.addToWatchlist}/>
+                }
             </div>
         );
     }
