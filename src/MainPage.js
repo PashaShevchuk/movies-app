@@ -48,8 +48,8 @@ class MainPage extends Component {
     loadMovies = async () => {
         const {getMovies} = this.props;
         this.setState({isLoading: true});
-        // let response = await fetch(`https://api.themoviedb.org/3/discover/tv/?api_key=${apiKey}`); * for TV series *
         let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`);
+                                                                                                     //&with_genres=10402
         if (response.ok) {
             let json = await response.json();
             this.setState({movieTotalResults: json.total_results})
@@ -185,6 +185,7 @@ class MainPage extends Component {
                         handleSubmit={this.handleSubmit}
                         handleChange={this.handleChange}
                 />
+                {}
 
                 <Switch>
 
