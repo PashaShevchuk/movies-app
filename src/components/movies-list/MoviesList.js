@@ -1,6 +1,7 @@
 import React from 'react';
 import MovieCard from "../movie-card/MovieCard";
 import {FetchError} from "../fetch-error/FetchError";
+import Genres from "../genres/Genres";
 import './MovieList.scss';
 
 export const MoviesList = (props) => {
@@ -18,6 +19,9 @@ export const MoviesList = (props) => {
             <div className="card-container">
                 {
                     !!error && (<FetchError error={error}/>)
+                }
+                {
+                    !isLoading && <Genres/>
                 }
                 {
                     !isLoading && movies.map(movie => <MovieCard movie={movie} key={movie.id}/>)

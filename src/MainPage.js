@@ -13,6 +13,7 @@ import {AboutUs} from "./components/about-us/AboutUs";
 import {Footer} from "./components/footer/Footer";
 import MovieDetails from "./components/movie-details/MovieDetails";
 import Watchlist from "./components/watchlist/Watchlist";
+import FilmsByGenre from "./components/films-by-genre/FilmsByGenre";
 import {searchMovies, getMovies, getTVShows} from "./actions";
 import {apiKey} from "./constants";
 
@@ -49,7 +50,6 @@ class MainPage extends Component {
         const {getMovies} = this.props;
         this.setState({isLoading: true});
         let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`);
-                                                                                                     //&with_genres=10402
         if (response.ok) {
             let json = await response.json();
             this.setState({movieTotalResults: json.total_results})
@@ -185,7 +185,6 @@ class MainPage extends Component {
                         handleSubmit={this.handleSubmit}
                         handleChange={this.handleChange}
                 />
-                {}
 
                 <Switch>
 
@@ -202,12 +201,20 @@ class MainPage extends Component {
                                 : ''
                         }
                     </Route>
+{/**************************************************************************************************************************/}
+                    <Route path="/movies/genre/:id"
+                           render={(routerProps) => {
+                               return (<FilmsByGenre {...routerProps} />);
+                           }}
+                    />
+{/**************************************************************************************************************************/}
 
                     <Route path="/movies/:id"
                            render={(routerProps) => {
                                return (<MovieDetails {...routerProps} />);
                            }}
                     />
+
 
                     <Route path="/tv-shows" exact>
                         <MoviesList movies={this.props.tvShows}
