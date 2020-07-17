@@ -19,7 +19,8 @@ class MovieDetails extends Component {
     loadMovie = async () => {
         const {match: {params: {id}}} = this.props;
         this.setState({isLoading: true});
-        let response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`);
+        let response = await fetch(`${id ? `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`
+            : `https://api.themoviedb.org/3/tv/${this.props.match.params.tvId}?api_key=${apiKey}`}`);
         if (response.ok) {
             let result = await response.json();
             if (typeof (result) === 'object') {
@@ -39,14 +40,15 @@ class MovieDetails extends Component {
 
     addToWatchlist = () => {
         const {movie} = this.state;
-        const {addToWatchlist, watchlist} = this.props;
+        const {addToWatchlist} = this.props;
         addToWatchlist(movie);
-        console.log(watchlist);
-
     }
 
     render() {
         const {movie, isLoading, error} = this.state;
+        const {watchlist} = this.props;
+
+        console.log(movie);
         return (
             <div>
                 {
@@ -63,7 +65,9 @@ class MovieDetails extends Component {
                 }
 
                 {
-                    !isLoading && movie && <MovieDetailsCard movie={movie} addToWatchlist={this.addToWatchlist}/>
+                    !isLoading && movie && <MovieDetailsCard movie={movie}
+                                                             addToWatchlist={this.addToWatchlist}
+                                                             watchlist={watchlist}/>
                 }
             </div>
         );

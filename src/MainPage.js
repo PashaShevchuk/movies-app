@@ -231,6 +231,12 @@ class MainPage extends Component {
                         }
                     </Route>
 
+                    <Route path="/tv-shows/:tvId"
+                           render={(routerProps) => {
+                               return (<MovieDetails {...routerProps} />);
+                           }}
+                    />
+
                     <Route path="/found-movies/:id"
                            render={(routerProps) => {
                                return (<MovieDetails {...routerProps} />);

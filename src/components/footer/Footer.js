@@ -1,6 +1,5 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import './Footer.scss'
 import facebookIcon from '../../assets/facebook-icon.png';
 import twitterIcon from '../../assets/twitter-icon.png';
 import githubIcon from '../../assets/github-icon.png';
@@ -8,6 +7,7 @@ import linkedinIcon from '../../assets/lindin-icon.png';
 import mapmarkerIcon from '../../assets/map-marker-icon.png';
 import phoneIcon from '../../assets/phone-icon.png';
 import evenlopIcon from '../../assets/envelope-icon.png';
+import './Footer.scss'
 
 export const Footer = () => {
     return (
