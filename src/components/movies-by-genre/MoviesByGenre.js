@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {apiKey} from "../../constants";
 import {MoviesList} from "../movies-list/MoviesList";
 
-class FilmsByGenre extends Component {
+class MoviesByGenre extends Component {
     state = {
         movies: [],
         isLoading: false,
@@ -50,4 +50,4 @@ class FilmsByGenre extends Component {
     }
 }
 
-export default FilmsByGenre;
+export default MoviesByGenre;

@@ -13,9 +13,10 @@ import {AboutUs} from "./components/about-us/AboutUs";
 import {Footer} from "./components/footer/Footer";
 import MovieDetails from "./components/movie-details/MovieDetails";
 import Watchlist from "./components/watchlist/Watchlist";
-import FilmsByGenre from "./components/films-by-genre/FilmsByGenre";
+import MoviesByGenre from "./components/movies-by-genre/MoviesByGenre";
 import {searchMovies, getMovies, getTVShows} from "./actions";
 import {apiKey} from "./constants";
+import {TVShowList} from "./components/tv-show-list/TVShowList";
 
 class MainPage extends Component {
     state = {
@@ -201,13 +202,13 @@ class MainPage extends Component {
                                 : ''
                         }
                     </Route>
-{/**************************************************************************************************************************/}
+                    {/**************************************************************************************************************************/}
                     <Route path="/movies/genre/:id"
                            render={(routerProps) => {
-                               return (<FilmsByGenre {...routerProps} />);
+                               return (<MoviesByGenre {...routerProps} />);
                            }}
                     />
-{/**************************************************************************************************************************/}
+                    {/**************************************************************************************************************************/}
 
                     <Route path="/movies/:id"
                            render={(routerProps) => {
@@ -217,7 +218,7 @@ class MainPage extends Component {
 
 
                     <Route path="/tv-shows" exact>
-                        <MoviesList movies={this.props.tvShows}
+                        <TVShowList tvShows={this.props.tvShows}
                                     isLoading={this.state.isTVShowsLoading}
                                     error={this.state.errorTVShows}
                         />
