@@ -4,10 +4,12 @@ import {apiKey} from "../../constants";
 import {FetchError} from "../fetch-error/FetchError";
 import {addToWatchlist} from "../../actions";
 import {MovieDetailsCard} from "../movie-details-card/MovieDetailsCard";
+import {TVShowDetailsCard} from "../tv-show-details-card/TVShowDetailsCard";
 
 class MovieDetails extends Component {
     state = {
         movie: null,
+        tvShow: null,
         isLoading: false,
         error: ''
     }
@@ -17,19 +19,29 @@ class MovieDetails extends Component {
     }
 
     loadMovie = async () => {
-        const {match: {params: {id}}} = this.props;
+        const {match: {params: {id, tvId}}} = this.props;
         this.setState({isLoading: true});
         let response = await fetch(`${id
             ? `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`
-            : `https://api.themoviedb.org/3/tv/${this.props.match.params.tvId}?api_key=${apiKey}`}`
+            : `https://api.themoviedb.org/3/tv/${tvId}?api_key=${apiKey}`}`
         );
-        if (response.ok) {
+
+        if (!!id && response.ok) {
             let result = await response.json();
             if (typeof (result) === 'object') {
                 this.setState({
                     isLoading: false,
                     error: '',
                     movie: result
+                });
+            }
+        } else if (!!tvId && response.ok) {
+            let result = await response.json();
+            if (typeof (result) === 'object') {
+                this.setState({
+                    isLoading: false,
+                    error: '',
+                    tvShow: result
                 });
             }
         } else {
@@ -47,10 +59,9 @@ class MovieDetails extends Component {
     }
 
     render() {
-        const {movie, isLoading, error} = this.state;
+        const {movie, tvShow, isLoading, error} = this.state;
         const {watchlist} = this.props;
 
-        console.log(movie);
         return (
             <div>
                 {
@@ -71,6 +82,11 @@ class MovieDetails extends Component {
                                                              addToWatchlist={this.addToWatchlist}
                                                              watchlist={watchlist}/>
                 }
+
+                {
+                    !isLoading && tvShow && <TVShowDetailsCard tvShow={tvShow}/>
+                }
+
             </div>
         );
     }
