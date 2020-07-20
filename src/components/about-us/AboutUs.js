@@ -62,19 +62,19 @@ export const AboutUs = () => {
                                     quibusdam quisquam quos reiciendis repudiandae sapiente sequi sunt voluptate?
                                     Ipsum?</p>
                             </li>
-                        </ol>
-                    </div>
 
-                    <div className="col-sm-12 col-md-6">
-                        <h6>dolor sit</h6>
-                        <ol>
                             <li><span><div className="number">05</div></span>
                                 <p className="paragraph-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                     Ducimus enim facere facilis harum ipsa libero maxime molestiae non, nostrum quaerat
                                     quibusdam quisquam quos reiciendis repudiandae sapiente sequi sunt voluptate?
                                     Ipsum?</p>
                             </li>
+                        </ol>
+                    </div>
 
+                    <div className="col-sm-12 col-md-6">
+                        <h6>dolor sit</h6>
+                        <ol>
                             <li><span><div className="number">06</div></span>
                                 <p className="paragraph-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                     Ducimus enim facere facilis harum ipsa libero maxime molestiae non, nostrum quaerat
@@ -90,6 +90,20 @@ export const AboutUs = () => {
                             </li>
 
                             <li><span><div className="number">08</div></span>
+                                <p className="paragraph-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Ducimus enim facere facilis harum ipsa libero maxime molestiae non, nostrum quaerat
+                                    quibusdam quisquam quos reiciendis repudiandae sapiente sequi sunt voluptate?
+                                    Ipsum?</p>
+                            </li>
+
+                            <li><span><div className="number">09</div></span>
+                                <p className="paragraph-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Ducimus enim facere facilis harum ipsa libero maxime molestiae non, nostrum quaerat
+                                    quibusdam quisquam quos reiciendis repudiandae sapiente sequi sunt voluptate?
+                                    Ipsum?</p>
+                            </li>
+
+                            <li><span><div className="number">10</div></span>
                                 <p className="paragraph-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                     Ducimus enim facere facilis harum ipsa libero maxime molestiae non, nostrum quaerat
                                     quibusdam quisquam quos reiciendis repudiandae sapiente sequi sunt voluptate?

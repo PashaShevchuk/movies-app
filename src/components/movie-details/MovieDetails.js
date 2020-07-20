@@ -19,8 +19,10 @@ class MovieDetails extends Component {
     loadMovie = async () => {
         const {match: {params: {id}}} = this.props;
         this.setState({isLoading: true});
-        let response = await fetch(`${id ? `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`
-            : `https://api.themoviedb.org/3/tv/${this.props.match.params.tvId}?api_key=${apiKey}`}`);
+        let response = await fetch(`${id
+            ? `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`
+            : `https://api.themoviedb.org/3/tv/${this.props.match.params.tvId}?api_key=${apiKey}`}`
+        );
         if (response.ok) {
             let result = await response.json();
             if (typeof (result) === 'object') {

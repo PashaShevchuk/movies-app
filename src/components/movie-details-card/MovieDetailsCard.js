@@ -23,7 +23,7 @@ export const MovieDetailsCard = (props) => {
         revenue,
         imdb_id,
         homepage,
-        last_air_date,
+        production_companies,
     } = movie;
 
     let movieDate = '';
@@ -61,16 +61,29 @@ export const MovieDetailsCard = (props) => {
                             <h2>{title}</h2>
 
                             <div>
-                                <div>Release date: {movieDate}</div>
-                                <div className="d-flex ">Genres: &nbsp;
+                                <div><b>Release date:</b> {movieDate}</div>
+                                {
+                                    !!genres.length && <div className="d-flex "><b>Genres:</b> &nbsp;
+                                        {
+                                            genres.map(genre => <div key={genre.id}>{genre.name}&nbsp;</div>)
+                                        }
+                                    </div>
+                                }
+
+                                <div><b>Running time:</b> {runtime} minutes</div>
+                                <div><b>Budget:</b> ${budget}</div>
+                                <div><b>Revenue:</b> ${revenue}</div>
+                                <div>
                                     {
-                                        !!genres.length && genres.map(genre => <div
-                                            key={genre.id}>{genre.name}&nbsp;</div>)
+                                        !!production_companies.length && (
+                                            <div className="d-flex flex-wrap"><b>Production companies:</b> &nbsp;
+                                                {
+                                                    production_companies.map(item => <div
+                                                        key={item.id}>{item.name}&nbsp;|&nbsp;</div>)
+                                                }
+                                            </div>)
                                     }
                                 </div>
-                                <div>Duration: {runtime} minutes</div>
-                                <div>Budget: ${budget}</div>
-                                <div>Box office: ${revenue}</div>
                             </div>
 
                             <div className="movie-details-actions">
@@ -88,37 +101,34 @@ export const MovieDetailsCard = (props) => {
                                             title="Add to your watchlist"/>
                                     </div>
 
-                                    <div className="movie-details-icons">
-                                        <a href={homepage} target="_blank" title="Visit Homepage">
-                                            <img src={homePageIcon} alt="homePageIcon"/>
-                                        </a>
-                                    </div>
+                                    {
+                                        homepage && <div className="movie-details-icons">
+                                            <a href={homepage} target="_blank" title="Visit Homepage">
+                                                <img src={homePageIcon} alt="homePageIcon"/>
+                                            </a>
+                                        </div>
+                                    }
 
-                                    <div className="movie-details-icons">
-                                        <a href={`https://www.imdb.com/title/${imdb_id}`} target="_blank"
-                                           title="Visit IMDb">
-                                            <img src={imdbIcon} alt="imdbIcon"/>
-                                        </a>
-                                    </div>
+                                    {
+                                        imdb_id && <div className="movie-details-icons">
+                                            <a href={`https://www.imdb.com/title/${imdb_id}`} target="_blank"
+                                               title="Visit IMDb">
+                                                <img src={imdbIcon} alt="imdbIcon"/>
+                                            </a>
+                                        </div>
+                                    }
                                 </div>
-                                {/*<div className="movie-details-actions-link">*/}
-                                {/*    <div>*/}
-                                {/*        <a href={homepage}>&#9733;Visit homepage</a>*/}
-                                {/*    </div>*/}
-                                {/*    <div>*/}
-                                {/*        <div onClick={addToWatchlist}>&#9733;Add to watchlist</div>*/}
-                                {/*    </div>*/}
-                                {/*</div>*/}
                             </div>
 
-                            <div className="tagline">&#10077;  {tagline}&#10078;</div>
+                            {
+                                tagline && <div className="tagline">&#10077;  {tagline}&#10078;</div>
+                            }
+
                             <div className="overview">
                                 <h4>Overview</h4>
                                 <div>{overview}</div>
-                                {last_air_date && <div>
-                                    <hr/>
-                                    {last_air_date}</div>}
                             </div>
+
                         </div>
                     </div>
                 </div>
