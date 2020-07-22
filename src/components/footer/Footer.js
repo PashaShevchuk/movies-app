@@ -26,13 +26,11 @@ export const Footer = () => {
 
                     <div className="col-xs-6 col-md-3 quick-links">
                         <h6>Quick Links</h6>
-                        <ul className="footer-links">
-                            <li><Link to="/movies">About Us</Link>
-                                <a href="http://scanfcode.com/about/">About Us</a></li>
-                            <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
-                            <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
-                            <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
-                            <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+                        <ul className="footer-links" onClick={() => window.scrollTo(0, 0)}>
+                            <li><Link to="/movies">Movies</Link></li>
+                            <li><Link to="/tv-shows">TV Shows</Link></li>
+                            <li><Link to="/watchlist">Watchlist</Link></li>
+                            <li><Link to="/about-us">About Us</Link></li>
                         </ul>
                     </div>
 

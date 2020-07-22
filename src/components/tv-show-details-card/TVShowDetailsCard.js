@@ -75,7 +75,7 @@ export const TVShowDetailsCard = (props) => {
                                 {
                                     !!genres.length && <div className="d-flex "><b>Genres:</b> &nbsp;
                                         {
-                                            genres.map(genre => <div key={genre.id}>{genre.name}&nbsp;</div>)
+                                            genres.map(genre => <div key={genre.id}>{genre.name}&nbsp;|&nbsp;</div>)
                                         }
                                     </div>
                                 }
