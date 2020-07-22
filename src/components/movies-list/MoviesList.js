@@ -16,13 +16,15 @@ export const MoviesList = (props) => {
                         </div>
                     </div>)
             }
+
+            {
+                !isLoading && !flag && <Genres/>
+            }
             <div className="card-container">
                 {
                     !!error && (<FetchError error={error}/>)
                 }
-                {
-                    !isLoading && !flag && <Genres/>
-                }
+
                 {
                     !isLoading && movies.map(movie => <MovieCard movie={movie} key={movie.id}/>)
                 }

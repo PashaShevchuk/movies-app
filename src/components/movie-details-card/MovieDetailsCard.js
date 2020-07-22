@@ -37,7 +37,7 @@ const MovieDetailsCardComponent = (props) => {
         movieDate = 'Release date unknown';
     }
 
-    const movieBackgroundPath = backdrop_path ? `https://image.tmdb.org/t/p/original${backdrop_path}` : defaultImage;
+    const movieBackgroundPath = backdrop_path ? `https://image.tmdb.org/t/p/original${backdrop_path}` : '';
 
     let movieBackgroundImageStyles = {
         backgroundImage: `url(${movieBackgroundPath})`,

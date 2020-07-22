@@ -201,20 +201,24 @@ class MainPage extends Component {
                         }
                     </Route>
 
-                    {/**************************************************************************************************************************/}
+                    <Route path="/movies/genre/:gId/:id"
+                           render={(routerProps) => {
+                               return (<MovieDetails {...routerProps} />);
+                           }}
+                    />
+
                     <Route path="/movies/genre/:id"
                            render={(routerProps) => {
                                return (<MoviesByGenre {...routerProps} />);
                            }}
                     />
-                    {/**************************************************************************************************************************/}
+
 
                     <Route path="/movies/:id"
                            render={(routerProps) => {
                                return (<MovieDetails {...routerProps} />);
                            }}
                     />
-
 
                     <Route path="/tv-shows" exact>
                         <TVShowList tvShows={this.props.tvShows}
