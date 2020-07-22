@@ -2,16 +2,20 @@ import React from "react";
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
 import {RadialProgressBar} from "../radial-progress-bar/RadialProgressBar";
-import {genres} from "../../constants";
+import {allGenres} from "../../constants";
 import defaultImage from '../../assets/default-movie-portrait.jpg';
 import './MovieCard.scss'
 
 const MovieCard = (props) => {
     const {movie, match: {url}} = props;
-    const {title, release_date, poster_path, vote_average, genre_ids} = movie;
+    const {title, release_date, poster_path, vote_average, genre_ids, genres} = movie;
 
     let movieGenres = [];
-    genre_ids.forEach(id => movieGenres.push(genres.find(item => item.id === id)));
+    if (genre_ids) {
+        genre_ids.forEach(id => movieGenres.push(allGenres.find(item => item.id === id)));
+    } else if (genres) {
+        genres.forEach(genre => movieGenres.push(allGenres.find(item => item.id === genre.id)));
+    }
 
     let movieDate = '';
     if (release_date) {

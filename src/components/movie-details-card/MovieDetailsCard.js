@@ -65,7 +65,7 @@ export const MovieDetailsCard = (props) => {
                                 {
                                     !!genres.length && <div className="d-flex "><b>Genres:</b> &nbsp;
                                         {
-                                            genres.map(genre => <div key={genre.id}>{genre.name}&nbsp;</div>)
+                                            genres.map(genre => <div key={genre.id}>{genre.name}&nbsp;|&nbsp;</div>)
                                         }
                                     </div>
                                 }
@@ -96,9 +96,14 @@ export const MovieDetailsCard = (props) => {
                                 <div className="watch-list d-flex">
                                     <div onClick={addToWatchlist} className="movie-details-icons">
                                         <img
-                                            src={watchlist.find(value => value.id === movie.id) ? watchListIconRed : watchListIcon}
+                                            src={watchlist.find(value => value.id === movie.id)
+                                                ? watchListIconRed
+                                                : watchListIcon}
                                             alt="watchListIcon"
-                                            title="Add to your watchlist"/>
+                                            title={watchlist.find(value => value.id === movie.id)
+                                                ? "Remove from your watchlist"
+                                                : "Add to your watchlist"}
+                                        />
                                     </div>
 
                                     {

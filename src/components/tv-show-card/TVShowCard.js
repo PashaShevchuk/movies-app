@@ -2,7 +2,7 @@ import React from "react";
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
 import {RadialProgressBar} from "../radial-progress-bar/RadialProgressBar";
-import {genres} from "../../constants";
+import {allGenres} from "../../constants";
 import defaultImage from '../../assets/default-movie-portrait.jpg';
 import './TVShowCard.scss'
 
@@ -11,7 +11,7 @@ const TVShowCard = (props) => {
     const {name, first_air_date, poster_path, vote_average, genre_ids} = tvShow;
 
     let twShowGenres = [];
-    genre_ids.forEach(id => twShowGenres.push(genres.find(item => item.id === id)));
+    genre_ids.forEach(id => twShowGenres.push(allGenres.find(item => item.id === id)));
 
     let tvShowDate = '';
     if (first_air_date) {

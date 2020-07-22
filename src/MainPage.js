@@ -258,6 +258,12 @@ class MainPage extends Component {
                         }
                     </Route>
 
+                    <Route path="/watchlist/:id"
+                           render={(routerProps) => {
+                               return (<MovieDetails {...routerProps} />);
+                           }}
+                    />
+
                     <Route path="/watchlist">
                         <Watchlist/>
                     </Route>
