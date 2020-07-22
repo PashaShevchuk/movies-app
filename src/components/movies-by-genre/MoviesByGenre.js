@@ -13,6 +13,12 @@ class MoviesByGenre extends Component {
         this.loadMovie();
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        const {match: {params: {id: prevId}}} = prevProps;
+        const {match: {params: {id}}} = this.props;
+        if (prevId !== id) this.loadMovie();
+    }
+
     loadMovie = async () => {
         const {match: {params: {id}}} = this.props;
         this.setState({isLoading: true});
@@ -39,7 +45,6 @@ class MoviesByGenre extends Component {
 
         return (
             <div>
-                films by genre
                 {
                     !isLoading && <MoviesList movies={movies}
                                               isLoading={isLoading}

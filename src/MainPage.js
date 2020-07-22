@@ -195,13 +195,12 @@ class MainPage extends Component {
                                     error={this.state.error}
                         />
                         {
-                            (this.state.movieTotalResults > 20)
-                                ? <Pagination pages={movieNumberPages}
-                                              nextPage={this.movieNextPage}
-                                              currentPage={this.state.movieCurrentPage}/>
-                                : ''
+                            this.state.movieTotalResults > 20 && <Pagination pages={movieNumberPages}
+                                                                             nextPage={this.movieNextPage}
+                                                                             currentPage={this.state.movieCurrentPage}/>
                         }
                     </Route>
+
                     {/**************************************************************************************************************************/}
                     <Route path="/movies/genre/:id"
                            render={(routerProps) => {
@@ -223,11 +222,9 @@ class MainPage extends Component {
                                     error={this.state.errorTVShows}
                         />
                         {
-                            (this.state.TVShowsTotalResults > 20)
-                                ? <Pagination pages={tvShowsNumberPages}
-                                              nextPage={this.TVShowsNextPage}
-                                              currentPage={this.state.TVShowsCurrentPage}/>
-                                : ''
+                            this.state.TVShowsTotalResults > 20 && <Pagination pages={tvShowsNumberPages}
+                                                                               nextPage={this.TVShowsNextPage}
+                                                                               currentPage={this.state.TVShowsCurrentPage}/>
                         }
                     </Route>
 
@@ -250,11 +247,9 @@ class MainPage extends Component {
                                     flag
                         />
                         {
-                            (this.state.totalResults > 20)
-                                ? <Pagination pages={numberPages}
-                                              nextPage={this.nextPage}
-                                              currentPage={this.state.currentPage}/>
-                                : ''
+                            this.state.totalResults > 20 && <Pagination pages={numberPages}
+                                                                        nextPage={this.nextPage}
+                                                                        currentPage={this.state.currentPage}/>
                         }
                     </Route>
 
