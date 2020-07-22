@@ -5,9 +5,10 @@ import watchListIconRed from '../../assets/watch-list-icon-red.png'
 import homePageIcon from '../../assets/home-solid-white.png'
 import {RadialProgressBar} from "../radial-progress-bar/RadialProgressBar";
 import './TVShowDetailsCard.scss';
+import {withRouter} from "react-router";
 
-export const TVShowDetailsCard = (props) => {
-    const {tvShow} = props;
+export const TVShowDetailsCardComponent = (props) => {
+    const {tvShow, history} = props;
     const {
         name,
         backdrop_path,
@@ -56,11 +57,15 @@ export const TVShowDetailsCard = (props) => {
         backgroundPosition: 'right -200px top'
     }
 
-    return (
+    const goBack = () => {
+        history.go(-1)
+    };
 
+    return (
         <div style={movieBackgroundImageStyles}>
             <div className="container-fluid movie-details-container">
                 <div className="container">
+                    <div onClick={goBack} className="go-back">&#9668; go back</div>
                     <div className="d-flex">
                         <div className="movie-poster">
                             <img src={poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : `${defaultImage}`}
@@ -142,3 +147,5 @@ export const TVShowDetailsCard = (props) => {
         </div>
     )
 };
+
+export const TVShowDetailsCard = withRouter(TVShowDetailsCardComponent);

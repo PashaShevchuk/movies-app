@@ -1,3 +1,11 @@
+.go-back{
+  padding-top: 10px;
+  margin-bottom: -10px;
+  color: #00dcff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
 .movie-details-container {
   margin: 0;
   background-image: linear-gradient(to right, rgb(33, 38, 58) 150px, rgba(52, 57, 74, 0.84) 80%);
@@ -33,6 +41,9 @@
 
 .movie-details-icons:hover {
   background-color: #566bff;
+  -webkit-transition: all .2s linear;
+  -o-transition: all .2s linear;
+  transition: all .2s linear
 }
 
 .movie-details-actions {

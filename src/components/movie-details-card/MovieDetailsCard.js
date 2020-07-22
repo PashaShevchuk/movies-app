@@ -1,4 +1,5 @@
 import React from "react";
+import {withRouter} from "react-router";
 import defaultImage from '../../assets/default-movie-portrait.jpg';
 import watchListIcon from '../../assets/watch-list-icon-white.png'
 import watchListIconRed from '../../assets/watch-list-icon-red.png'
@@ -7,8 +8,8 @@ import homePageIcon from '../../assets/home-solid-white.png'
 import {RadialProgressBar} from "../radial-progress-bar/RadialProgressBar";
 import './MovieDetailsCard.scss';
 
-export const MovieDetailsCard = (props) => {
-    const {movie, addToWatchlist, watchlist} = props;
+const MovieDetailsCardComponent = (props) => {
+    const {movie, addToWatchlist, watchlist, history} = props;
     const {
         title,
         backdrop_path,
@@ -46,10 +47,15 @@ export const MovieDetailsCard = (props) => {
         backgroundPosition: 'right -200px top'
     }
 
+    const goBack = () => {
+        history.go(-1)
+    };
+
     return (
         <div style={movieBackgroundImageStyles}>
             <div className="container-fluid movie-details-container">
                 <div className="container">
+                    <div onClick={goBack} className="go-back">&#9668; go back</div>
                     <div className="d-flex">
                         <div className="movie-poster">
                             <img src={poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : `${defaultImage}`}
@@ -143,3 +149,5 @@ export const MovieDetailsCard = (props) => {
         </div>
     )
 };
+
+export const MovieDetailsCard = withRouter(MovieDetailsCardComponent);
