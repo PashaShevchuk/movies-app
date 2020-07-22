@@ -5,7 +5,7 @@ import Genres from "../genres/Genres";
 import './MovieList.scss';
 
 export const MoviesList = (props) => {
-    const {movies, isLoading, error} = props;
+    const {movies, isLoading, error, flag} = props;
     return (
         <div className="movie-container">
             {
@@ -21,7 +21,7 @@ export const MoviesList = (props) => {
                     !!error && (<FetchError error={error}/>)
                 }
                 {
-                    !isLoading && <Genres/>
+                    !isLoading && !flag && <Genres/>
                 }
                 {
                     !isLoading && movies.map(movie => <MovieCard movie={movie} key={movie.id}/>)

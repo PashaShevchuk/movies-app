@@ -27,7 +27,7 @@ const TVShowCard = (props) => {
         <div className="movie-card">
 
             <div className="movie-card-img">
-                <Link to={`${url}/${tvShow.id}`}>
+                <Link to={`${url}/${tvShow.id}`} title={name}>
                     <img src={poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : `${defaultImage}`}
                          alt={name}/>
                 </Link>
@@ -45,7 +45,7 @@ const TVShowCard = (props) => {
             </div>
 
             <div>
-                <Link className="movie-card-title" to={`${url}/${tvShow.id}`}>{name}</Link>
+                <Link className="movie-card-title" to={`${url}/${tvShow.id}`} title={name}>{name}</Link>
             </div>
 
             <div className="movie-card-date">{tvShowDate}</div>

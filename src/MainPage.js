@@ -247,6 +247,7 @@ class MainPage extends Component {
                         <MoviesList movies={this.props.foundMovies}
                                     isLoading={this.state.isMovieSearch}
                                     error={this.state.errorSearch}
+                                    flag
                         />
                         {
                             (this.state.totalResults > 20)

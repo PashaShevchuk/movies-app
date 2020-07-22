@@ -62,21 +62,25 @@ export const Footer = () => {
                     <div className="col-md-4 col-sm-6 col-xs-12">
                         <ul className="social-icons">
                             <li>
+                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                 <a className="facebook">
                                     <img src={facebookIcon} className="icons" alt="facebookIcon"/>
                                 </a>
                             </li>
                             <li>
+                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                 <a className="twitter">
                                     <img src={twitterIcon} className="icons" alt="twitterIcon"/>
                                 </a>
                             </li>
                             <li>
+                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                 <a className="dribbble">
                                     <img src={githubIcon} className="icons" alt="githubIcon"/>
                                 </a>
                             </li>
                             <li>
+                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                 <a className="linkedin">
                                     <img src={linkedinIcon} className="icons" alt="linkedinIcon"/>
                                 </a>

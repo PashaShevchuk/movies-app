@@ -103,6 +103,7 @@ export const MovieDetailsCard = (props) => {
 
                                     {
                                         homepage && <div className="movie-details-icons">
+                                            {/* eslint-disable-next-line react/jsx-no-target-blank */}
                                             <a href={homepage} target="_blank" title="Visit Homepage">
                                                 <img src={homePageIcon} alt="homePageIcon"/>
                                             </a>
@@ -111,6 +112,7 @@ export const MovieDetailsCard = (props) => {
 
                                     {
                                         imdb_id && <div className="movie-details-icons">
+                                            {/* eslint-disable-next-line react/jsx-no-target-blank */}
                                             <a href={`https://www.imdb.com/title/${imdb_id}`} target="_blank"
                                                title="Visit IMDb">
                                                 <img src={imdbIcon} alt="imdbIcon"/>

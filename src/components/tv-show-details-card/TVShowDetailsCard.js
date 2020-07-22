@@ -112,6 +112,7 @@ export const TVShowDetailsCard = (props) => {
 
                                     {
                                         homepage && <div className="movie-details-icons">
+                                            {/* eslint-disable-next-line react/jsx-no-target-blank */}
                                             <a href={homepage} target="_blank" title="Visit Homepage">
                                                 <img src={homePageIcon} alt="homePageIcon"/>
                                             </a>

@@ -27,7 +27,7 @@ const MovieCard = (props) => {
         <div className="movie-card">
 
             <div className="movie-card-img">
-                <Link to={`${url}/${movie.id}`}>
+                <Link to={`${url}/${movie.id}`} title={title}>
                     <img src={poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : `${defaultImage}`}
                          alt={title}/>
                 </Link>
@@ -45,7 +45,7 @@ const MovieCard = (props) => {
             </div>
 
             <div>
-                <Link className="movie-card-title" to={`${url}/${movie.id}`}>{title}</Link>
+                <Link className="movie-card-title" to={`${url}/${movie.id}`} title={title}>{title}</Link>
             </div>
 
             <div className="movie-card-date">{movieDate}</div>
