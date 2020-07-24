@@ -8,10 +8,14 @@ import './TVShowCard.scss'
 
 const TVShowCard = (props) => {
     const {tvShow, match: {url}} = props;
-    const {name, first_air_date, poster_path, vote_average, genre_ids} = tvShow;
+    const {name, first_air_date, poster_path, vote_average, genre_ids, genres} = tvShow;
 
     let twShowGenres = [];
-    genre_ids.forEach(id => twShowGenres.push(allGenres.find(item => item.id === id)));
+    if (genre_ids) {
+        genre_ids.forEach(id => twShowGenres.push(allGenres.find(item => item.id === id)));
+    } else if (genres) {
+        genres.forEach(genre => twShowGenres.push(allGenres.find(item => item.id === genre.id)));
+    }
 
     let tvShowDate = '';
     if (first_air_date) {

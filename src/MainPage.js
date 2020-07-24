@@ -175,9 +175,9 @@ class MainPage extends Component {
 //______________________________________________________________________________________________________________________
 
     render() {
-        let movieNumberPages = Math.floor(this.state.movieTotalResults / 20); // For movies
+        let movieNumberPages = Math.floor(this.state.movieTotalResults / 20);     // For movies
         let tvShowsNumberPages = Math.floor(this.state.TVShowsTotalResults / 20); // For TV shows
-        let numberPages = Math.floor(this.state.totalResults / 20);           // To search movies
+        let numberPages = Math.floor(this.state.totalResults / 20);               // To search movies
 
         return (
             <Router>
@@ -213,12 +213,12 @@ class MainPage extends Component {
                            }}
                     />
 
-
                     <Route path="/movies/:id"
                            render={(routerProps) => {
                                return (<MovieDetails {...routerProps} />);
                            }}
                     />
+
 
                     <Route path="/tv-shows" exact>
                         <TVShowList tvShows={this.props.tvShows}
@@ -238,13 +238,14 @@ class MainPage extends Component {
                            }}
                     />
 
+
                     <Route path="/found-movies/:id"
                            render={(routerProps) => {
                                return (<MovieDetails {...routerProps} />);
                            }}
                     />
 
-                    <Route path="/found-movies">
+                    <Route path="/found-movies" exact>
                         <MoviesList movies={this.props.foundMovies}
                                     isLoading={this.state.isMovieSearch}
                                     error={this.state.errorSearch}
@@ -257,17 +258,25 @@ class MainPage extends Component {
                         }
                     </Route>
 
+
+                    <Route path="/watchlist/:tvId"
+                           render={(routerProps) => {
+                               return (<MovieDetails {...routerProps} />);
+                           }}
+                    />
+
                     <Route path="/watchlist/:id"
                            render={(routerProps) => {
                                return (<MovieDetails {...routerProps} />);
                            }}
                     />
 
-                    <Route path="/watchlist">
+                    <Route path="/watchlist" exact>
                         <Watchlist/>
                     </Route>
 
-                    <Route path="/about-us">
+                    
+                    <Route path="/about-us" exact>
                         <AboutUs/>
                     </Route>
 
