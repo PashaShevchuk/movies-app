@@ -11,7 +11,7 @@ const Watchlist = (props) => {
     console.log('watchlistTVShow', watchlistTVShow);
 
     return (
-        <div className="container">
+        <div className="container watchlist-container">
             <h4>My watchlist</h4>
             <Panel label={`Movies: ${watchlist.length}`}>
                 <div className="watchlist">

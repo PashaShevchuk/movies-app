@@ -35,11 +35,11 @@
   }
 }
 
-//.movie-card:hover {
-//  border: 10px solid red;
-//  border-radius: 10px;
-//  width: 210px;
-//}
+.movie-card:hover {
+  -webkit-box-shadow: 4px 4px 10px 0 rgba(105,105,105,1);
+  -moz-box-shadow: 4px 4px 10px 0 rgba(105,105,105,1);
+  box-shadow: 4px 4px 10px 0 rgba(105,105,105,1);
+}
 
 .genres {
   margin-top: -24px;

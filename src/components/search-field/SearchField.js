@@ -6,8 +6,15 @@ export const SearchField = (props) => {
     return (
         <div className="wrap">
             <form className="search" action="" onSubmit={props.handleSubmit}>
-                <input type="text" className="searchTerm" placeholder="Search movie" onChange={props.handleChange}/>
-                <button type="submit" className="searchButton" onClick={props.toFoundMovies}>
+                <input type="text"
+                       className="searchTerm"
+                       placeholder="Enter the title of the movie"
+                       onChange={props.handleChange}
+                />
+                <button type="submit"
+                        className="searchButton"
+                        onClick={props.toFoundMovies}
+                >
                     <img src={searchIcon} alt="search icon"/>
                 </button>
             </form>

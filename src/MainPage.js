@@ -259,23 +259,21 @@ class MainPage extends Component {
                     </Route>
 
 
-                    <Route path="/watchlist/:tvId"
-                           render={(routerProps) => {
-                               return (<MovieDetails {...routerProps} />);
-                           }}
-                    />
-
+                    <Route path="/watchlist" exact>
+                        <Watchlist/>
+                    </Route>
                     <Route path="/watchlist/:id"
                            render={(routerProps) => {
                                return (<MovieDetails {...routerProps} />);
                            }}
                     />
 
-                    <Route path="/watchlist" exact>
-                        <Watchlist/>
-                    </Route>
+                    <Route path="/watchlist/:tvId"
+                           render={(routerProps) => {
+                               return (<MovieDetails {...routerProps} />);
+                           }}
+                    />
 
-                    
                     <Route path="/about-us" exact>
                         <AboutUs/>
                     </Route>

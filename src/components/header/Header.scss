@@ -17,6 +17,11 @@
     &-link {
       text-decoration: none;
       color: white;
+      font-size: 17px;
+    }
+
+    &-link:hover {
+      color: #2472d3;
     }
   }
 }

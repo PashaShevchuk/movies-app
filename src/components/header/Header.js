@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {withRouter} from 'react-router';
 import {links} from "../../constants";
-import logo from '../../assets/logo512.png';
+import logo from '../../assets/app-logo.png';
 import {SearchField} from "../search-field/SearchField";
 import './Header.scss';
 

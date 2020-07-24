@@ -45,7 +45,7 @@ export const Footer = () => {
                         </div>
                         <div className="d-flex">
                             <div><img src={evenlopIcon} className="icons-contact" alt="facebookIcon"/></div>
-                            <div>movie_app@movie.com</div>
+                            <div>movie@movie.com</div>
                         </div>
                     </div>
 
