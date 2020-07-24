@@ -1,14 +1,15 @@
 import React from "react";
+import {withRouter} from "react-router";
+import {RadialProgressBar} from "../radial-progress-bar/RadialProgressBar";
 import defaultImage from '../../assets/default-movie-portrait.jpg';
 import watchListIcon from '../../assets/watch-list-icon-white.png'
 import watchListIconRed from '../../assets/watch-list-icon-red.png'
 import homePageIcon from '../../assets/home-solid-white.png'
-import {RadialProgressBar} from "../radial-progress-bar/RadialProgressBar";
+
 import './TVShowDetailsCard.scss';
-import {withRouter} from "react-router";
 
 export const TVShowDetailsCardComponent = (props) => {
-    const {tvShow, history} = props;
+    const {tvShow, history, addToWatchlist, watchlist} = props;
     const {
         name,
         backdrop_path,
@@ -108,12 +109,12 @@ export const TVShowDetailsCardComponent = (props) => {
                                 </div>
                                 <div><b>User<br/>Score</b></div>
                                 <div className="watch-list d-flex">
-                                    {/*            /!*<div onClick={addToWatchlist} className="movie-details-icons">*!/*/}
-                                    {/*            /!*    <img*!/*/}
-                                    {/*            /!*        src={watchlist.find(value => value.id === movie.id) ? watchListIconRed : watchListIcon}*!/*/}
-                                    {/*            /!*        alt="watchListIcon"*!/*/}
-                                    {/*            /!*        title="Add to your watchlist"/>*!/*/}
-                                    {/*            /!*</div>*!/*/}
+                                    <div onClick={addToWatchlist} className="movie-details-icons">
+                                        <img
+                                            src={watchlist.find(value => value.id === tvShow.id) ? watchListIconRed : watchListIcon}
+                                            alt="watchListIcon"
+                                            title="Add tv show to your watchlist"/>
+                                    </div>
 
                                     {
                                         homepage && <div className="movie-details-icons">
@@ -123,15 +124,6 @@ export const TVShowDetailsCardComponent = (props) => {
                                             </a>
                                         </div>
                                     }
-
-                                    {/*            {*/}
-                                    {/*                imdb_id && <div className="movie-details-icons">*/}
-                                    {/*                    <a href={`https://www.imdb.com/title/${imdb_id}`} target="_blank"*/}
-                                    {/*                       title="Visit IMDb">*/}
-                                    {/*                        <img src={imdbIcon} alt="imdbIcon"/>*/}
-                                    {/*                    </a>*/}
-                                    {/*                </div>*/}
-                                    {/*            }*/}
                                 </div>
                             </div>
 

@@ -4,8 +4,9 @@ import MovieCard from "../movie-card/MovieCard";
 import './Watchlist.scss'
 
 const Watchlist = (props) => {
-    const {watchlist} = props;
-    console.log(watchlist);
+    const {watchlist, watchlistTVShow} = props;
+    console.log('watchlist', watchlist);
+    console.log('watchlistTVShow', watchlistTVShow);
 
     return (
         <div className="container">
@@ -23,7 +24,8 @@ const Watchlist = (props) => {
 const mapStateToProps = (store) => {
     const {moviesReducer} = store;
     return {
-        watchlist: moviesReducer.watchlist
+        watchlist: moviesReducer.watchlist,
+        watchlistTVShow: moviesReducer.watchlistTVShow
     }
 };
 

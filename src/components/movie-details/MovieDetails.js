@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {apiKey} from "../../constants";
 import {FetchError} from "../fetch-error/FetchError";
-import {addToWatchlist} from "../../actions";
+import {addToWatchlist, addTVShowToWatchlist} from "../../actions";
 import {MovieDetailsCard} from "../movie-details-card/MovieDetailsCard";
 import {TVShowDetailsCard} from "../tv-show-details-card/TVShowDetailsCard";
 
@@ -52,15 +52,21 @@ class MovieDetails extends Component {
         }
     };
 
-    addToWatchlist = () => {
+    addMovieToWatchlist = () => {
         const {movie} = this.state;
         const {addToWatchlist} = this.props;
         addToWatchlist(movie);
     }
 
+    addTVShowToWatchlist = () => {
+        const {tvShow} = this.state;
+        const {addTVShowToWatchlist} = this.props;
+        addTVShowToWatchlist(tvShow);
+    }
+
     render() {
         const {movie, tvShow, isLoading, error} = this.state;
-        const {watchlist} = this.props;
+        const {watchlist, watchlistTVShow} = this.props;
 
         return (
             <div>
@@ -79,12 +85,15 @@ class MovieDetails extends Component {
 
                 {
                     !isLoading && movie && <MovieDetailsCard movie={movie}
-                                                             addToWatchlist={this.addToWatchlist}
+                                                             addToWatchlist={this.addMovieToWatchlist}
                                                              watchlist={watchlist}/>
                 }
 
                 {
-                    !isLoading && tvShow && <TVShowDetailsCard tvShow={tvShow}/>
+                    !isLoading && tvShow && <TVShowDetailsCard tvShow={tvShow}
+                                                               addToWatchlist={this.addTVShowToWatchlist}
+                                                               watchlist={watchlistTVShow}
+                    />
                 }
 
             </div>
@@ -95,12 +104,14 @@ class MovieDetails extends Component {
 const mapStateToProps = (store) => {
     const {moviesReducer} = store;
     return {
-        watchlist: moviesReducer.watchlist
+        watchlist: moviesReducer.watchlist,
+        watchlistTVShow: moviesReducer.watchlistTVShow
     }
 };
 
 const mapDispatchToProps = ({
-    addToWatchlist
+    addToWatchlist,
+    addTVShowToWatchlist
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails);

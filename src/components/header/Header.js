@@ -17,7 +17,7 @@ const HeaderComponent = (props) => {
             <div className="container">
 
                 <div>
-                    <img src={logo} className="header-logo" alt="logotype"/>
+                    <Link to="movies"><img src={logo} className="header-logo" alt="logotype"/></Link>
                 </div>
 
                 <div className="header-links-wrapper">
