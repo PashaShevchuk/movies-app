@@ -1,7 +1,9 @@
 import React from 'react';
 import TVShowCard from "../tv-show-card/TVShowCard";
 import {FetchError} from "../fetch-error/FetchError";
+import {allGenres} from "../../constants";
 import './TVShowList.scss';
+import Genres from "../genres/Genres";
 
 export const TVShowList = (props) => {
     const {tvShows, isLoading, error} = props;
@@ -15,6 +17,11 @@ export const TVShowList = (props) => {
                         </div>
                     </div>)
             }
+
+            {
+                !isLoading && <Genres genres={allGenres} flag/>
+            }
+
             <div className="card-container">
                 {
                     !!error && (<FetchError error={error}/>)

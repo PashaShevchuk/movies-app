@@ -6,6 +6,8 @@ import {
     Switch,
     Redirect
 } from "react-router-dom";
+import {apiKey} from "./constants";
+import {searchMovies, getMovies, getTVShows} from "./actions";
 import {Header} from "./components/header/Header";
 import {MoviesList} from "./components/movies-list/MoviesList";
 import {Pagination} from "./components/pagination/Pagination";
@@ -14,9 +16,8 @@ import {Footer} from "./components/footer/Footer";
 import MovieDetails from "./components/movie-details/MovieDetails";
 import Watchlist from "./components/watchlist/Watchlist";
 import MoviesByGenre from "./components/movies-by-genre/MoviesByGenre";
-import {searchMovies, getMovies, getTVShows} from "./actions";
-import {apiKey} from "./constants";
 import {TVShowList} from "./components/tv-show-list/TVShowList";
+import TvShowsByGenre from "./components/tv-shows-by-genre/TVShowsByGenre";
 
 class MainPage extends Component {
     state = {
@@ -231,6 +232,18 @@ class MainPage extends Component {
                                                                                currentPage={this.state.TVShowsCurrentPage}/>
                         }
                     </Route>
+
+                    <Route path="/tv-shows/genre/:gId/:tvId"
+                           render={(routerProps) => {
+                               return (<MovieDetails {...routerProps} />);
+                           }}
+                    />
+
+                    <Route path="/tv-shows/genre/:id"
+                           render={(routerProps) => {
+                               return (<MoviesByGenre {...routerProps} flag/>);
+                           }}
+                    />
 
                     <Route path="/tv-shows/:tvId"
                            render={(routerProps) => {

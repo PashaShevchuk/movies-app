@@ -2,6 +2,7 @@ import React from 'react';
 import MovieCard from "../movie-card/MovieCard";
 import {FetchError} from "../fetch-error/FetchError";
 import Genres from "../genres/Genres";
+import {genresForRender} from "../../constants";
 import './MovieList.scss';
 
 export const MoviesList = (props) => {
@@ -18,7 +19,7 @@ export const MoviesList = (props) => {
             }
 
             {
-                !isLoading && !flag && <Genres/>
+                !isLoading && !flag && <Genres genres={genresForRender}/>
             }
             <div className="card-container">
                 {
