@@ -18,7 +18,7 @@ export class Panel extends Component {
         const {isOpen} = this.state;
 
         return (
-            <div className="may-panel card " onClick={this.onOpenAndClosePanelClick}>
+            <div className="may-panel card" onClick={this.onOpenAndClosePanelClick}>
                 <div className="may-panel-header card-header">
                     <div><b>{label}</b></div>
                     <div className={`may-panel-header-chevron ${isOpen ? 'up' : ''}`}>
