@@ -169,11 +169,20 @@
   text-align: left;
 }
 
-@media (max-width: 767px) {
+
+@media screen and (max-width: 768px) {
   .social-icons li.title {
     display: block;
     margin-right: 0;
     font-weight: 600
+  }
+
+  .site-footer h6 {
+    text-align: center;
+  }
+
+  .site-footer ul {
+    text-align: center;
   }
 }
 

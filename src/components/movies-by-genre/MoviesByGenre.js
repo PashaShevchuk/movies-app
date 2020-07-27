@@ -57,7 +57,6 @@ class MoviesByGenre extends Component {
             let json = await response.json();
             this.setState({movieTotalResults: json.total_results, movieCurrentPage: pageNumber})
             const {results} = json;
-            debugger
             if (Array.isArray(results)) {
                 this.setState({
                     movies: results

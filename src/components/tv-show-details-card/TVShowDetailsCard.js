@@ -48,7 +48,7 @@ export const TVShowDetailsCardComponent = (props) => {
         lastReliseDate = 'Release date unknown';
     }
 
-    const movieBackgroundPath = backdrop_path ? `https://image.tmdb.org/t/p/original${backdrop_path}` : defaultImage;
+    const movieBackgroundPath = backdrop_path ? `https://image.tmdb.org/t/p/original${backdrop_path}` : '';
 
     let movieBackgroundImageStyles = {
         backgroundImage: `url(${movieBackgroundPath})`,
@@ -67,7 +67,7 @@ export const TVShowDetailsCardComponent = (props) => {
             <div className="container-fluid movie-details-container">
                 <div className="container">
                     <div onClick={goBack} className="go-back">&#9668; go back</div>
-                    <div className="d-flex">
+                    <div className="container-poster-and-details">
                         <div className="movie-poster">
                             <img src={poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : `${defaultImage}`}
                                  alt={name}/>

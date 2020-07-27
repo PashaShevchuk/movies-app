@@ -1,4 +1,4 @@
-.go-back{
+.go-back {
   padding-top: 10px;
   color: #2472d3;
   cursor: pointer;
@@ -9,6 +9,10 @@
 .movie-details-container {
   margin: 0;
   background-image: linear-gradient(to right, rgb(33, 38, 58) 150px, rgba(52, 57, 74, 0.84) 80%);
+}
+
+.container-poster-and-details {
+  display: flex;
 }
 
 .movie-details-info {
@@ -68,5 +72,31 @@
 
   h4 {
     font-size: 1.25rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container-poster-and-details {
+    display: block;
+  }
+
+  .movie-poster {
+    text-align: center;
+  }
+
+  .movie-poster img {
+    width: 90%;
+  }
+
+  .overview {
+    padding-bottom: 30px;
+  }
+
+}
+
+@media screen and (max-width: 400px) {
+  .movie-details-actions {
+    display: flex;
+    flex-wrap: wrap;
   }
 }

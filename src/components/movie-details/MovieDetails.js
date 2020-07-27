@@ -5,6 +5,7 @@ import {FetchError} from "../fetch-error/FetchError";
 import {addToWatchlist, addTVShowToWatchlist} from "../../actions";
 import {MovieDetailsCard} from "../movie-details-card/MovieDetailsCard";
 import {TVShowDetailsCard} from "../tv-show-details-card/TVShowDetailsCard";
+import './MovieDetails.scss';
 
 class MovieDetails extends Component {
     state = {
@@ -69,7 +70,7 @@ class MovieDetails extends Component {
         const {watchlist, watchlistTVShow} = this.props;
 
         return (
-            <div>
+            <div className="movie-details">
                 {
                     isLoading && (
                         <div className="text-center m-2">

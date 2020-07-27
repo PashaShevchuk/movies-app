@@ -56,7 +56,7 @@ const MovieDetailsCardComponent = (props) => {
             <div className="container-fluid movie-details-container">
                 <div className="container">
                     <div onClick={goBack} className="go-back">&#9668; go back</div>
-                    <div className="d-flex">
+                    <div className="container-poster-and-details">
                         <div className="movie-poster">
                             <img src={poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : `${defaultImage}`}
                                  alt={title}/>
