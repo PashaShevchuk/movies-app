@@ -8,7 +8,7 @@ export const SearchField = (props) => {
             <form className="search" action="" onSubmit={props.handleSubmit}>
                 <input type="text"
                        className="searchTerm"
-                       placeholder="Enter the title of the movie"
+                       placeholder="Search movies"
                        onChange={props.handleChange}
                 />
                 <button type="submit"

@@ -17,6 +17,7 @@ import MovieDetails from "./components/movie-details/MovieDetails";
 import Watchlist from "./components/watchlist/Watchlist";
 import MoviesByGenre from "./components/movies-by-genre/MoviesByGenre";
 import {TVShowList} from "./components/tv-show-list/TVShowList";
+import {HeaderDesktopAndMobile} from "./components/heder-desktop-and-mobile/HeaderDesktopAndMobile";
 
 class MainPage extends Component {
     state = {
@@ -182,9 +183,14 @@ class MainPage extends Component {
         return (
             <Router>
 
-                <Header searchTerm={this.state.searchTerm}
-                        handleSubmit={this.handleSubmit}
-                        handleChange={this.handleChange}
+                {/*<Header searchTerm={this.state.searchTerm}*/}
+                {/*        handleSubmit={this.handleSubmit}*/}
+                {/*        handleChange={this.handleChange}*/}
+                {/*/>*/}
+
+                <HeaderDesktopAndMobile searchTerm={this.state.searchTerm}
+                                        handleSubmit={this.handleSubmit}
+                                        handleChange={this.handleChange}
                 />
 
                 <Switch>
