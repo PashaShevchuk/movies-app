@@ -19,7 +19,7 @@ export const MoviesList = (props) => {
             }
 
             {
-                !isLoading && !flag && <Genres genres={genresForRender}/>
+                !isLoading && !error && !flag && <Genres genres={genresForRender}/>
             }
             <div className="card-container">
                 {

@@ -9,7 +9,7 @@ export class Panel extends Component {
         inputVal: 'test'
     };
 
-    onClick = () => {
+    onOpenAndClosePanelClick = () => {
         this.setState({isOpen: !this.state.isOpen})
     };
 
@@ -18,10 +18,10 @@ export class Panel extends Component {
         const {isOpen} = this.state;
 
         return (
-            <div className="may-panel card">
+            <div className="may-panel card " onClick={this.onOpenAndClosePanelClick}>
                 <div className="may-panel-header card-header">
                     <div><b>{label}</b></div>
-                    <div className={`may-panel-header-chevron ${isOpen ? 'up' : ''}`} onClick={this.onClick}>
+                    <div className={`may-panel-header-chevron ${isOpen ? 'up' : ''}`}>
                         <img src={Chevron} alt="chevron arrow"/>
                     </div>
                 </div>

@@ -19,7 +19,7 @@ export const TVShowList = (props) => {
             }
 
             {
-                !isLoading && <Genres genres={allGenres} flag/>
+                !isLoading && !error && <Genres genres={allGenres} flag/>
             }
 
             <div className="card-container">

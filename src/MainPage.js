@@ -17,7 +17,6 @@ import MovieDetails from "./components/movie-details/MovieDetails";
 import Watchlist from "./components/watchlist/Watchlist";
 import MoviesByGenre from "./components/movies-by-genre/MoviesByGenre";
 import {TVShowList} from "./components/tv-show-list/TVShowList";
-import TvShowsByGenre from "./components/tv-shows-by-genre/TVShowsByGenre";
 
 class MainPage extends Component {
     state = {
@@ -275,6 +274,7 @@ class MainPage extends Component {
                     <Route path="/watchlist" exact>
                         <Watchlist/>
                     </Route>
+
                     <Route path="/watchlist/:id"
                            render={(routerProps) => {
                                return (<MovieDetails {...routerProps} />);
