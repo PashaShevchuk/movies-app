@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import MovieCard from "../movie-card/MovieCard";
 import {FetchError} from "../fetch-error/FetchError";
 import Genres from "../genres/Genres";
@@ -7,6 +7,7 @@ import './MovieList.scss';
 
 export const MoviesList = (props) => {
     const {movies, isLoading, error, flag} = props;
+    useEffect(() => window.scrollTo(0, 0));
     return (
         <div className="movie-container">
             {

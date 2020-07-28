@@ -8,16 +8,15 @@ import {
 } from "react-router-dom";
 import {apiKey} from "./constants";
 import {searchMovies, getMovies, getTVShows} from "./actions";
-import {Header} from "./components/header/Header";
+import {HeaderDesktopAndMobile} from "./components/heder-desktop-and-mobile/HeaderDesktopAndMobile";
 import {MoviesList} from "./components/movies-list/MoviesList";
 import {Pagination} from "./components/pagination/Pagination";
+import MovieDetails from "./components/movie-details/MovieDetails";
+import MoviesByGenre from "./components/movies-by-genre/MoviesByGenre";
+import Watchlist from "./components/watchlist/Watchlist";
+import {TVShowList} from "./components/tv-show-list/TVShowList";
 import {AboutUs} from "./components/about-us/AboutUs";
 import {Footer} from "./components/footer/Footer";
-import MovieDetails from "./components/movie-details/MovieDetails";
-import Watchlist from "./components/watchlist/Watchlist";
-import MoviesByGenre from "./components/movies-by-genre/MoviesByGenre";
-import {TVShowList} from "./components/tv-show-list/TVShowList";
-import {HeaderDesktopAndMobile} from "./components/heder-desktop-and-mobile/HeaderDesktopAndMobile";
 
 class MainPage extends Component {
     state = {
@@ -182,11 +181,6 @@ class MainPage extends Component {
 
         return (
             <Router>
-
-                {/*<Header searchTerm={this.state.searchTerm}*/}
-                {/*        handleSubmit={this.handleSubmit}*/}
-                {/*        handleChange={this.handleChange}*/}
-                {/*/>*/}
 
                 <HeaderDesktopAndMobile searchTerm={this.state.searchTerm}
                                         handleSubmit={this.handleSubmit}

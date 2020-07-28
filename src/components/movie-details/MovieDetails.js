@@ -20,6 +20,7 @@ class MovieDetails extends Component {
     }
 
     loadMovie = async () => {
+        window.scrollTo(0, 0);
         const {match: {params: {id, tvId}}} = this.props;
         this.setState({isLoading: true});
         let response = await fetch(`${id

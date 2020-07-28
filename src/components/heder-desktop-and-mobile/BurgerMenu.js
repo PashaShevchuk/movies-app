@@ -1,11 +1,12 @@
 import React, {useState} from "react";
 import styled from 'styled-components';
-import LeftNav from "./LeftNav";
+import RightNav from "./RightNav";
+import {withRouter} from "react-router";
 
 const StyledBurger = styled.div`
   width: 2rem;
   height: 2rem;
-  position: absolute;
+  position: ${({open}) => open ? 'fixed' : 'absolute'};
   top: 24px;
   right: 20px;
   z-index: 20;
@@ -37,10 +38,18 @@ const StyledBurger = styled.div`
   }
 `;
 
-export const BurgerMenu = (props) => {
-    const {handleSubmit, handleChange, toFoundMovies} = props;
+const BurgerMenuComponent = (props) => {
+    const {handleSubmit, handleChange, history, searchTerm} = props;
     const [open, setOpen] = useState(false);
+
     const onLinkClick = () => setOpen(!open);
+
+    const toFoundMovies = () => {
+        if (searchTerm === '') return;
+        onLinkClick();
+        history.push('/found-movies');
+        window.scrollTo(0, 0);
+    };
 
     return (
         <div>
@@ -49,13 +58,14 @@ export const BurgerMenu = (props) => {
                 <div/>
                 <div/>
             </StyledBurger>
-
-            <LeftNav open={open}
-                     handleSubmit={handleSubmit}
-                     handleChange={handleChange}
-                     toFoundMovies={toFoundMovies}
-                     onLinkClick={onLinkClick}
+            <RightNav open={open}
+                      handleSubmit={handleSubmit}
+                      handleChange={handleChange}
+                      toFoundMovies={toFoundMovies}
+                      onLinkClick={onLinkClick}
             />
         </div>
     )
-}
+};
+
+export const BurgerMenu = withRouter(BurgerMenuComponent);

@@ -27,6 +27,8 @@ const MovieCard = (props) => {
         movieDate = 'Release date unknown';
     }
 
+
+
     return (
         <div className="movie-card">
 

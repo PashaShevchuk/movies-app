@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {Panel} from "../panel/Panel";
 import MovieCard from "../movie-card/MovieCard";
@@ -7,6 +7,8 @@ import './Watchlist.scss'
 
 const Watchlist = (props) => {
     const {watchlist, watchlistTVShow} = props;
+    useEffect(() => window.scrollTo(0, 0));
+
     console.log('watchlist', watchlist);
     console.log('watchlistTVShow', watchlistTVShow);
 

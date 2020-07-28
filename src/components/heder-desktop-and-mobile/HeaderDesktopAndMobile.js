@@ -1,33 +1,29 @@
 import React from "react";
 import {Link} from 'react-router-dom';
-import {withRouter} from 'react-router';
 import {BurgerMenu} from "./BurgerMenu";
 import logo from "../../assets/app-logo.png";
+import './HeaderDesktopAndMobile.scss';
 
-const HeaderDesktopAndMobileComponent = (props) => {
-    const {history, handleSubmit, handleChange, searchTerm} = props;
-    const toFoundMovies = () => {
-        if (searchTerm === '') return;
-        history.push('/found-movies');
-    };
+export const HeaderDesktopAndMobile = (props) => {
+    const {handleSubmit, handleChange, searchTerm} = props;
+
     return (
         <div className="header navbar">
             <div className="container">
 
-                <div>
+                <div className="d-flex align-items-center">
                     <Link to="/movies">
                         <img src={logo} className="header-logo" alt="logotype"/>
                     </Link>
+                    <div className="header-name">MOVIES<br/>TIME</div>
                 </div>
 
                 <BurgerMenu handleSubmit={handleSubmit}
                             handleChange={handleChange}
-                            toFoundMovies={toFoundMovies}
+                            searchTerm={searchTerm}
                 />
 
             </div>
         </div>
     );
 };
-
-export const HeaderDesktopAndMobile = withRouter(HeaderDesktopAndMobileComponent);

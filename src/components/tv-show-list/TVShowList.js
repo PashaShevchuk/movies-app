@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import TVShowCard from "../tv-show-card/TVShowCard";
 import {FetchError} from "../fetch-error/FetchError";
 import {allGenres} from "../../constants";
@@ -7,6 +7,7 @@ import Genres from "../genres/Genres";
 
 export const TVShowList = (props) => {
     const {tvShows, isLoading, error} = props;
+    useEffect(() => window.scrollTo(0, 0));
     return (
         <div className="movie-container">
             {

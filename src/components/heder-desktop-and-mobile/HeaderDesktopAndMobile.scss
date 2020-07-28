@@ -1,0 +1,39 @@
+.header {
+  padding: 10px 10px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #032541;
+
+  &-logo {
+    height: 60px;
+    margin-right: 20px;
+  }
+
+  &-name {
+    text-align: center;
+    font-family: cursive;
+    font-size: 20px;
+    font-weight: bold;
+    color: #3982dc;
+  }
+
+  &-name:hover {
+    cursor: default;
+  }
+
+  &-links-wrapper {
+    display: flex;
+
+    &-link {
+      text-decoration: none;
+      color: white;
+      font-size: 19px;
+    }
+
+    &-link:hover {
+      color: #2472d3;
+    }
+  }
+}

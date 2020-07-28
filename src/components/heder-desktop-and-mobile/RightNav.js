@@ -1,12 +1,12 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 import styled from 'styled-components';
 import {SearchField} from "../search-field/SearchField";
 import {links} from "../../constants";
-import {Link} from "react-router-dom";
 
 const Ul = styled.ul`
   list-style: none;
-  margin: 0;
+  margin: 1px;
   padding: 0;
   display: flex;
   align-items: center;
@@ -30,7 +30,7 @@ const Ul = styled.ul`
   }
 `;
 
-const LeftNav = (props) => {
+const RightNav = (props) => {
     const {handleSubmit, handleChange, toFoundMovies, open, onLinkClick} = props;
 
     return (
@@ -52,6 +52,6 @@ const LeftNav = (props) => {
 
         </Ul>
     )
-}
+};
 
-export default LeftNav
+export default RightNav;

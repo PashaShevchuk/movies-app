@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useEffect} from "react";
 import MovieDBLogo from '../../assets/movie-db-logo.png';
 import './AboutUs.scss';
 
 export const AboutUs = () => {
+    useEffect(() => window.scrollTo(0, 0));
+
     return (
         <div className="about-container">
             <div className="container">
