@@ -6,6 +6,10 @@
   align-items: center;
   background-color: #032541;
 
+  &-black {
+    background-color: #001a2f;
+  }
+
   &-logo {
     height: 60px;
     margin-right: 20px;
@@ -27,9 +31,13 @@
     display: flex;
 
     &-link {
-      text-decoration: none;
       color: white;
       font-size: 19px;
+
+      &-black {
+        color: #509eff;
+        font-size: 19px;
+      }
     }
 
     &-link:hover {

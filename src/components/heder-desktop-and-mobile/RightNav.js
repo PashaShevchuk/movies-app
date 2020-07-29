@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import styled from 'styled-components';
+import {DarkThemeContext} from "../../context/DarkThemeContext";
 import {SearchField} from "../search-field/SearchField";
 import {links} from "../../constants";
 
@@ -34,23 +35,35 @@ const RightNav = (props) => {
     const {handleSubmit, handleChange, toFoundMovies, open, onLinkClick} = props;
 
     return (
-        <Ul open={open}>
+        <DarkThemeContext.Consumer>
             {
-                links.map(item => {
+                (value) => {
+                    const {isDarkTheme} = value;
                     return (
-                        <li className="nav-item" key={item.url}>
-                            <Link to={item.url} onClick={onLinkClick}
-                                  className="header-links-wrapper-link nav-link">{item.name}</Link>
-                        </li>
-                    );
-                })
+                        <Ul open={open}>
+                            {
+                                links.map(item => {
+                                    return (
+                                        <li className="nav-item" key={item.url}>
+                                            <Link
+                                                to={item.url}
+                                                onClick={onLinkClick}
+                                                className={`header-links-wrapper-link${isDarkTheme ? '-black' : ''} nav-link`}>
+                                                {item.name}
+                                            </Link>
+                                        </li>
+                                    );
+                                })
+                            }
+                            <SearchField handleSubmit={handleSubmit}
+                                         handleChange={handleChange}
+                                         toFoundMovies={toFoundMovies}
+                            />
+                        </Ul>
+                    )
+                }
             }
-            <SearchField handleSubmit={handleSubmit}
-                         handleChange={handleChange}
-                         toFoundMovies={toFoundMovies}
-            />
-
-        </Ul>
+        </DarkThemeContext.Consumer>
     )
 };
 

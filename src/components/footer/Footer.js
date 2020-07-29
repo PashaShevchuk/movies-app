@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {DarkThemeSwitcher} from "../dark-theme-switcher/DarkThemeSwitcher";
 import facebookIcon from '../../assets/facebook-icon.png';
 import twitterIcon from '../../assets/twitter-icon.png';
 import githubIcon from '../../assets/github-icon.png';
@@ -50,6 +51,9 @@ export const Footer = () => {
                     </div>
 
                 </div>
+
+                <DarkThemeSwitcher/>
+
                 <hr/>
             </div>
             <div className="container">

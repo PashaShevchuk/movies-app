@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import {apiKey} from "./constants";
 import {searchMovies, getMovies, getTVShows} from "./actions";
+import {DarkThemeContext} from "./context/DarkThemeContext";
 import {HeaderDesktopAndMobile} from "./components/heder-desktop-and-mobile/HeaderDesktopAndMobile";
 import {MoviesList} from "./components/movies-list/MoviesList";
 import {Pagination} from "./components/pagination/Pagination";
@@ -17,6 +18,8 @@ import Watchlist from "./components/watchlist/Watchlist";
 import {TVShowList} from "./components/tv-show-list/TVShowList";
 import {AboutUs} from "./components/about-us/AboutUs";
 import {Footer} from "./components/footer/Footer";
+
+import './MainPage.scss';
 
 class MainPage extends Component {
     state = {
@@ -180,124 +183,138 @@ class MainPage extends Component {
         let numberPages = Math.floor(this.state.totalResults / 20);               // To search movies
 
         return (
-            <Router>
+            <DarkThemeContext.Consumer>
+                {
+                    (value) => {
+                        const {isDarkTheme} = value;
+                        return (
+                            <div className={`main-page-container${isDarkTheme ? '-black' : ''}`}>
+                                <Router>
 
-                <HeaderDesktopAndMobile searchTerm={this.state.searchTerm}
-                                        handleSubmit={this.handleSubmit}
-                                        handleChange={this.handleChange}
-                />
+                                    <HeaderDesktopAndMobile searchTerm={this.state.searchTerm}
+                                                            handleSubmit={this.handleSubmit}
+                                                            handleChange={this.handleChange}
+                                    />
 
-                <Switch>
+                                    <Switch>
 
-                    <Route path="/movies" exact>
-                        <MoviesList movies={this.props.movies}
-                                    isLoading={this.state.isLoading}
-                                    error={this.state.error}
-                        />
-                        {
-                            this.state.movieTotalResults > 20 && <Pagination pages={movieNumberPages}
-                                                                             nextPage={this.movieNextPage}
-                                                                             currentPage={this.state.movieCurrentPage}/>
-                        }
-                    </Route>
+                                        <Route path="/movies" exact>
+                                            <MoviesList movies={this.props.movies}
+                                                        isLoading={this.state.isLoading}
+                                                        error={this.state.error}
+                                            />
+                                            {
+                                                this.state.movieTotalResults > 20 &&
+                                                <Pagination pages={movieNumberPages}
+                                                            nextPage={this.movieNextPage}
+                                                            currentPage={this.state.movieCurrentPage}/>
+                                            }
+                                        </Route>
 
-                    <Route path="/movies/genre/:gId/:id"
-                           render={(routerProps) => {
-                               return (<MovieDetails {...routerProps} />);
-                           }}
-                    />
+                                        <Route path="/movies/genre/:gId/:id"
+                                               render={(routerProps) => {
+                                                   return (<MovieDetails {...routerProps} />);
+                                               }}
+                                        />
 
-                    <Route path="/movies/genre/:id"
-                           render={(routerProps) => {
-                               return (<MoviesByGenre {...routerProps} />);
-                           }}
-                    />
+                                        <Route path="/movies/genre/:id"
+                                               render={(routerProps) => {
+                                                   return (<MoviesByGenre {...routerProps} />);
+                                               }}
+                                        />
 
-                    <Route path="/movies/:id"
-                           render={(routerProps) => {
-                               return (<MovieDetails {...routerProps} />);
-                           }}
-                    />
-
-
-                    <Route path="/tv-shows" exact>
-                        <TVShowList tvShows={this.props.tvShows}
-                                    isLoading={this.state.isTVShowsLoading}
-                                    error={this.state.errorTVShows}
-                        />
-                        {
-                            this.state.TVShowsTotalResults > 20 && <Pagination pages={tvShowsNumberPages}
-                                                                               nextPage={this.TVShowsNextPage}
-                                                                               currentPage={this.state.TVShowsCurrentPage}/>
-                        }
-                    </Route>
-
-                    <Route path="/tv-shows/genre/:gId/:tvId"
-                           render={(routerProps) => {
-                               return (<MovieDetails {...routerProps} />);
-                           }}
-                    />
-
-                    <Route path="/tv-shows/genre/:id"
-                           render={(routerProps) => {
-                               return (<MoviesByGenre {...routerProps} flag/>);
-                           }}
-                    />
-
-                    <Route path="/tv-shows/:tvId"
-                           render={(routerProps) => {
-                               return (<MovieDetails {...routerProps} />);
-                           }}
-                    />
+                                        <Route path="/movies/:id"
+                                               render={(routerProps) => {
+                                                   return (<MovieDetails {...routerProps} />);
+                                               }}
+                                        />
 
 
-                    <Route path="/found-movies/:id"
-                           render={(routerProps) => {
-                               return (<MovieDetails {...routerProps} />);
-                           }}
-                    />
+                                        <Route path="/tv-shows" exact>
+                                            <TVShowList tvShows={this.props.tvShows}
+                                                        isLoading={this.state.isTVShowsLoading}
+                                                        error={this.state.errorTVShows}
+                                            />
+                                            {
+                                                this.state.TVShowsTotalResults > 20 &&
+                                                <Pagination pages={tvShowsNumberPages}
+                                                            nextPage={this.TVShowsNextPage}
+                                                            currentPage={this.state.TVShowsCurrentPage}/>
+                                            }
+                                        </Route>
 
-                    <Route path="/found-movies" exact>
-                        <MoviesList movies={this.props.foundMovies}
-                                    isLoading={this.state.isMovieSearch}
-                                    error={this.state.errorSearch}
-                                    flag
-                        />
-                        {
-                            this.state.totalResults > 20 && <Pagination pages={numberPages}
-                                                                        nextPage={this.nextPage}
-                                                                        currentPage={this.state.currentPage}/>
-                        }
-                    </Route>
+                                        <Route path="/tv-shows/genre/:gId/:tvId"
+                                               render={(routerProps) => {
+                                                   return (<MovieDetails {...routerProps} />);
+                                               }}
+                                        />
+
+                                        <Route path="/tv-shows/genre/:id"
+                                               render={(routerProps) => {
+                                                   return (<MoviesByGenre {...routerProps} flag/>);
+                                               }}
+                                        />
+
+                                        <Route path="/tv-shows/:tvId"
+                                               render={(routerProps) => {
+                                                   return (<MovieDetails {...routerProps} />);
+                                               }}
+                                        />
 
 
-                    <Route path="/watchlist" exact>
-                        <Watchlist/>
-                    </Route>
+                                        <Route path="/found-movies/:id"
+                                               render={(routerProps) => {
+                                                   return (<MovieDetails {...routerProps} />);
+                                               }}
+                                        />
 
-                    <Route path="/watchlist/:id"
-                           render={(routerProps) => {
-                               return (<MovieDetails {...routerProps} />);
-                           }}
-                    />
+                                        <Route path="/found-movies" exact>
+                                            <MoviesList movies={this.props.foundMovies}
+                                                        isLoading={this.state.isMovieSearch}
+                                                        error={this.state.errorSearch}
+                                                        flag
+                                            />
+                                            {
+                                                this.state.totalResults > 20 &&
+                                                <Pagination pages={numberPages}
+                                                            nextPage={this.nextPage}
+                                                            currentPage={this.state.currentPage}/>
+                                            }
+                                        </Route>
 
-                    <Route path="/watchlist/:tvId"
-                           render={(routerProps) => {
-                               return (<MovieDetails {...routerProps} />);
-                           }}
-                    />
 
-                    <Route path="/about-us" exact>
-                        <AboutUs/>
-                    </Route>
+                                        <Route path="/watchlist" exact>
+                                            <Watchlist/>
+                                        </Route>
 
-                    <Redirect from="/" to="/movies" exact/>
+                                        <Route path="/watchlist/:id"
+                                               render={(routerProps) => {
+                                                   return (<MovieDetails {...routerProps} />);
+                                               }}
+                                        />
 
-                </Switch>
+                                        <Route path="/watchlist/:tvId"
+                                               render={(routerProps) => {
+                                                   return (<MovieDetails {...routerProps} />);
+                                               }}
+                                        />
 
-                <Footer/>
+                                        <Route path="/about-us" exact>
+                                            <AboutUs/>
+                                        </Route>
 
-            </Router>
+                                        <Redirect from="/" to="/movies" exact/>
+
+                                    </Switch>
+
+                                    <Footer/>
+
+                                </Router>
+                            </div>
+                        )
+                    }
+                }
+            </DarkThemeContext.Consumer>
         );
     }
 }
