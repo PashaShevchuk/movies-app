@@ -1,5 +1,6 @@
 import React from "react";
 import {withRouter} from "react-router";
+import {DarkThemeContext} from "../../context/DarkThemeContext";
 import {RadialProgressBar} from "../radial-progress-bar/RadialProgressBar";
 import defaultImage from '../../assets/default-movie-portrait.jpg';
 import watchListIcon from '../../assets/watch-list-icon-white.png'
@@ -63,80 +64,92 @@ export const TVShowDetailsCardComponent = (props) => {
     };
 
     return (
-        <div style={movieBackgroundImageStyles}>
-            <div className="container-fluid movie-details-container">
-                <div className="container">
-                    <div onClick={goBack} className="go-back">&#9668; go back</div>
-                    <div className="container-poster-and-details">
-                        <div className="movie-poster">
-                            <img src={poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : `${defaultImage}`}
-                                 alt={name}/>
-                        </div>
-
-                        <div className="movie-details-info">
-                            <h2>{name}</h2>
-                            <div>
-                                <div><b>First release date:</b> {firstReliseDate}</div>
-                                <div><b>Last release date:</b> {lastReliseDate}</div>
-                                {
-                                    !!genres.length && <div className="d-flex "><b>Genres:</b> &nbsp;
-                                        {
-                                            genres.map(genre => <div key={genre.id}>{genre.name}&nbsp;|&nbsp;</div>)
-                                        }
-                                    </div>
-                                }
-
-                                <div><b>Number of seasons:</b> {number_of_seasons}</div>
-                                <div><b>Number of episodes:</b> {number_of_episodes}</div>
-                                <div><b>Episode running time:</b> {episode_run_time[0]} minutes</div>
-                                <div><b>Status:</b> {status}</div>
-                                <div>
-                                    {
-                                        !!production_companies.length && (
-                                            <div className="d-flex flex-wrap"><b>Production companies:</b> &nbsp;
-                                                {
-                                                    production_companies.map(item => <div
-                                                        key={item.id}>{item.name}&nbsp;|&nbsp;</div>)
-                                                }
-                                            </div>)
-                                    }
-                                </div>
-                            </div>
-
-                            <div className="movie-details-actions">
-                                <div className="movie-details-radialProgressBar">
-                                    <RadialProgressBar rating={vote_average}/>
-                                </div>
-                                <div><b>User<br/>Score</b></div>
-                                <div className="watch-list d-flex">
-                                    <div onClick={addToWatchlist} className="movie-details-icons">
-                                        <img
-                                            src={watchlist.find(value => value.id === tvShow.id) ? watchListIconRed : watchListIcon}
-                                            alt="watchListIcon"
-                                            title="Add tv show to your watchlist"/>
-                                    </div>
-
-                                    {
-                                        homepage && <div className="movie-details-icons">
-                                            {/* eslint-disable-next-line react/jsx-no-target-blank */}
-                                            <a href={homepage} target="_blank" title="Visit Homepage">
-                                                <img src={homePageIcon} alt="homePageIcon"/>
-                                            </a>
+        <DarkThemeContext.Consumer>
+            {
+                (value) => {
+                    const {isDarkTheme} = value;
+                    return (
+                        <div style={movieBackgroundImageStyles}>
+                            <div className="container-fluid movie-details-container">
+                                <div className="container">
+                                    <div onClick={goBack} className="go-back">&#9668; go back</div>
+                                    <div className="container-poster-and-details">
+                                        <div className="movie-poster">
+                                            <img
+                                                src={poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : `${defaultImage}`}
+                                                alt={name}/>
                                         </div>
-                                    }
+
+                                        <div className={`movie-details-info${isDarkTheme ? '-black' : ''}`}>
+                                            <h2>{name}</h2>
+                                            <div>
+                                                <div><b>First release date:</b> {firstReliseDate}</div>
+                                                <div><b>Last release date:</b> {lastReliseDate}</div>
+                                                {
+                                                    !!genres.length && <div className="d-flex "><b>Genres:</b> &nbsp;
+                                                        {
+                                                            genres.map(genre => <div
+                                                                key={genre.id}>{genre.name}&nbsp;|&nbsp;</div>)
+                                                        }
+                                                    </div>
+                                                }
+
+                                                <div><b>Number of seasons:</b> {number_of_seasons}</div>
+                                                <div><b>Number of episodes:</b> {number_of_episodes}</div>
+                                                <div><b>Episode running time:</b> {episode_run_time[0]} minutes</div>
+                                                <div><b>Status:</b> {status}</div>
+                                                <div>
+                                                    {
+                                                        !!production_companies.length && (
+                                                            <div className="d-flex flex-wrap"><b>Production
+                                                                companies:</b> &nbsp;
+                                                                {
+                                                                    production_companies.map(item => <div
+                                                                        key={item.id}>{item.name}&nbsp;|&nbsp;</div>)
+                                                                }
+                                                            </div>)
+                                                    }
+                                                </div>
+                                            </div>
+
+                                            <div className="movie-details-actions">
+                                                <div className="movie-details-radialProgressBar">
+                                                    <RadialProgressBar rating={vote_average}/>
+                                                </div>
+                                                <div><b>User<br/>Score</b></div>
+                                                <div className="watch-list d-flex">
+                                                    <div onClick={addToWatchlist} className="movie-details-icons">
+                                                        <img
+                                                            src={watchlist.find(value => value.id === tvShow.id) ? watchListIconRed : watchListIcon}
+                                                            alt="watchListIcon"
+                                                            title="Add tv show to your watchlist"/>
+                                                    </div>
+
+                                                    {
+                                                        homepage && <div className="movie-details-icons">
+                                                            {/* eslint-disable-next-line react/jsx-no-target-blank */}
+                                                            <a href={homepage} target="_blank" title="Visit Homepage">
+                                                                <img src={homePageIcon} alt="homePageIcon"/>
+                                                            </a>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+
+                                            <div className="overview">
+                                                <h4>Overview</h4>
+                                                <div>{overview}</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div className="overview">
-                                <h4>Overview</h4>
-                                <div>{overview}</div>
-                            </div>
-
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    )
+                }
+            }
+        </DarkThemeContext.Consumer>
     )
 };
 

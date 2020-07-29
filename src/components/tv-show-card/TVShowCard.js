@@ -1,6 +1,7 @@
 import React from "react";
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
+import {DarkThemeContext} from "../../context/DarkThemeContext";
 import {RadialProgressBar} from "../radial-progress-bar/RadialProgressBar";
 import {allGenres} from "../../constants";
 import defaultImage from '../../assets/default-movie-portrait.jpg';
@@ -28,33 +29,47 @@ const TVShowCard = (props) => {
     }
 
     return (
-        <div className="movie-card">
+        <DarkThemeContext.Consumer>
+            {
+                (value) => {
+                    const {isDarkTheme} = value;
+                    return (
+                        <div className={`tv-show-card ${isDarkTheme ? 'black' : ''}`}>
 
-            <div className="movie-card-img">
-                <Link to={`${url}/${tvShow.id}`} title={name}>
-                    <img src={poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : `${defaultImage}`}
-                         alt={name}/>
-                </Link>
-            </div>
+                            <div className="tv-show-card-img">
+                                <Link to={`${url}/${tvShow.id}`} title={name}>
+                                    <img
+                                        src={poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : `${defaultImage}`}
+                                        alt={name}/>
+                                </Link>
+                            </div>
 
-            <div className="movie-card-progress-bar">
-                <RadialProgressBar rating={vote_average}/>
-            </div>
+                            <div className="tv-show-card-progress-bar">
+                                <RadialProgressBar rating={vote_average}/>
+                            </div>
 
-            <div className='d-flex flex-wrap genres'>
-                {
-                    !!twShowGenres.length && twShowGenres.map(genre => <div key={genre.id}
-                                                                            className="movie-genres">{genre.name}</div>)
+                            <div className='d-flex flex-wrap genres'>
+                                {
+                                    !!twShowGenres.length && twShowGenres.map(genre => <div key={genre.id}
+                                                                                            className="tv-show-genres">{genre.name}</div>)
+                                }
+                            </div>
+
+                            <div>
+                                <Link className={`tv-show-card-title${isDarkTheme ? '-black' : ''}`}
+                                      to={`${url}/${tvShow.id}`}
+                                      title={name}>
+                                    {name}
+                                </Link>
+                            </div>
+
+                            <div className="tv-show-card-date">{tvShowDate}</div>
+
+                        </div>
+                    )
                 }
-            </div>
-
-            <div>
-                <Link className="movie-card-title" to={`${url}/${tvShow.id}`} title={name}>{name}</Link>
-            </div>
-
-            <div className="movie-card-date">{tvShowDate}</div>
-
-        </div>
+            }
+        </DarkThemeContext.Consumer>
     );
 };
 

@@ -27,6 +27,11 @@
   &-title {
     font-weight: 600;
     color: #000;
+
+    &-black {
+      font-weight: 600;
+      color: #FFFFFF;
+    }
   }
 
   &-date {
@@ -39,6 +44,12 @@
   -webkit-box-shadow: 4px 4px 10px 0 rgba(105,105,105,1);
   -moz-box-shadow: 4px 4px 10px 0 rgba(105,105,105,1);
   box-shadow: 4px 4px 10px 0 rgba(105,105,105,1);
+}
+
+.black:hover {
+  -webkit-box-shadow: 0 0 8px 3px rgba(255,255,255,0.73);
+  -moz-box-shadow: 0 0 8px 3px rgba(255,255,255,0.73);
+  box-shadow: 0 0 8px 3px rgba(255,255,255,0.73);
 }
 
 .genres {

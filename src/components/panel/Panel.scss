@@ -2,6 +2,12 @@
   margin: 20px;
   cursor: pointer;
 
+  &-black {
+    margin: 20px;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #242424;
+  }
 
   &-header {
     display: flex;
@@ -22,6 +28,12 @@
 }
 
 .may-panel:hover {
+  -webkit-box-shadow: 0 0 6px 1px rgba(163, 163, 163, 1);
+  -moz-box-shadow: 0 0 6px 1px rgba(163, 163, 163, 1);
+  box-shadow: 0 0 6px 1px rgba(163, 163, 163, 1);
+}
+
+.may-panel-black:hover {
   -webkit-box-shadow: 0 0 6px 1px rgba(163, 163, 163, 1);
   -moz-box-shadow: 0 0 6px 1px rgba(163, 163, 163, 1);
   box-shadow: 0 0 6px 1px rgba(163, 163, 163, 1);

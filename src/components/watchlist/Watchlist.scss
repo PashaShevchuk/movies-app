@@ -1,5 +1,10 @@
 .watchlist-container {
   min-height: 45.4vh;
+
+  & .black {
+    color: #509eff;
+  }
+
 }
 
 .watchlist {

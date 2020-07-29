@@ -1,4 +1,4 @@
-.movie-card {
+.tv-show-card {
   margin: 30px 0 0 30px;
   border-radius: 10px;
   width: 200px;
@@ -27,6 +27,11 @@
   &-title {
     font-weight: 600;
     color: #000;
+
+    &-black {
+      font-weight: 600;
+      color: #FFFFFF;
+    }
   }
 
   &-date {
@@ -35,17 +40,23 @@
   }
 }
 
-//.movie-card:hover {
-//  border: 10px solid red;
-//  border-radius: 10px;
-//  width: 210px;
-//}
+.tv-show-card:hover {
+  -webkit-box-shadow: 4px 4px 10px 0 rgba(105, 105, 105, 1);
+  -moz-box-shadow: 4px 4px 10px 0 rgba(105, 105, 105, 1);
+  box-shadow: 4px 4px 10px 0 rgba(105, 105, 105, 1);
+}
+
+.black:hover {
+  -webkit-box-shadow: 0 0 8px 3px rgba(255,255,255,0.73);
+  -moz-box-shadow: 0 0 8px 3px rgba(255,255,255,0.73);
+  box-shadow: 0 0 8px 3px rgba(255,255,255,0.73);
+}
 
 .genres {
   margin-top: -24px;
 }
 
-.movie-genres {
+.tv-show-genres {
   background-color: #26272b;
   color: #FFFFFF;
   border-radius: 0.28rem;
