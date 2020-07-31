@@ -17,7 +17,10 @@ export const Pagination = (props) => {
             <div
                 key={i}
                 className={(i === currentPage ? 'round-effect active' : 'round-effect')}
-                onClick={() => {setCurrentPage(i); props.nextPage(i);}}>
+                onClick={() => {
+                    setCurrentPage(i);
+                    props.nextPage(i);
+                }}>
                 {i}
             </div>
         );
