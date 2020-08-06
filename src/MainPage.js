@@ -282,7 +282,6 @@ class MainPage extends Component {
                                             }
                                         </Route>
 
-
                                         <Route path="/watchlist" exact>
                                             <Watchlist/>
                                         </Route>

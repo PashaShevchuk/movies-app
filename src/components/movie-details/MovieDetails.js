@@ -22,6 +22,7 @@ class MovieDetails extends Component {
     loadMovie = async () => {
         window.scrollTo(0, 0);
         const {match: {params: {id, tvId}}} = this.props;
+        console.log(this.props.match.params);
         this.setState({isLoading: true});
         let response = await fetch(`${id
             ? `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`
