@@ -212,7 +212,7 @@ class MainPage extends Component {
                                             }
                                         </Route>
 
-                                        <Route path="/movies/genre/:gId/:id"
+                                        <Route path="/movies/genre/:gId/:movieType/:id"
                                                render={(routerProps) => {
                                                    return (<MovieDetails {...routerProps} />);
                                                }}
@@ -224,7 +224,7 @@ class MainPage extends Component {
                                                }}
                                         />
 
-                                        <Route path="/movies/:id"
+                                        <Route path="/movies/:movieType/:id"
                                                render={(routerProps) => {
                                                    return (<MovieDetails {...routerProps} />);
                                                }}
@@ -244,7 +244,7 @@ class MainPage extends Component {
                                             }
                                         </Route>
 
-                                        <Route path="/tv-shows/genre/:gId/:tvId"
+                                        <Route path="/tv-shows/genre/:gId/:movieType/:id"
                                                render={(routerProps) => {
                                                    return (<MovieDetails {...routerProps} />);
                                                }}
@@ -256,14 +256,14 @@ class MainPage extends Component {
                                                }}
                                         />
 
-                                        <Route path="/tv-shows/:tvId"
+                                        <Route path="/tv-shows/:movieType/:id"
                                                render={(routerProps) => {
                                                    return (<MovieDetails {...routerProps} />);
                                                }}
                                         />
 
 
-                                        <Route path="/found-movies/:id"
+                                        <Route path="/found-movies/:movieType/:id"
                                                render={(routerProps) => {
                                                    return (<MovieDetails {...routerProps} />);
                                                }}
@@ -287,13 +287,13 @@ class MainPage extends Component {
                                             <Watchlist/>
                                         </Route>
 
-                                        <Route path="/watchlist/:id"
+                                        <Route path="/watchlist/:movieType/:id"
                                                render={(routerProps) => {
                                                    return (<MovieDetails {...routerProps} />);
                                                }}
                                         />
 
-                                        <Route path="/watchlist/:tvId"
+                                        <Route path="/watchlist/:movieType/:id"
                                                render={(routerProps) => {
                                                    return (<MovieDetails {...routerProps} />);
                                                }}

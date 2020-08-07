@@ -21,15 +21,11 @@ class MovieDetails extends Component {
 
     loadMovie = async () => {
         window.scrollTo(0, 0);
-        const {match: {params: {id, tvId}}} = this.props;
-        console.log(this.props.match.params);
+        const {match: {params: {id, movieType}}} = this.props;
         this.setState({isLoading: true});
-        let response = await fetch(`${id
-            ? `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`
-            : `https://api.themoviedb.org/3/tv/${tvId}?api_key=${apiKey}`}`
-        );
+        let response = await fetch(`https://api.themoviedb.org/3/${movieType}/${id}?api_key=${apiKey}`);
 
-        if (!!id && response.ok) {
+        if ((movieType === 'movie') && response.ok) {
             let result = await response.json();
             if (typeof (result) === 'object') {
                 this.setState({
@@ -38,7 +34,7 @@ class MovieDetails extends Component {
                     movie: result
                 });
             }
-        } else if (!!tvId && response.ok) {
+        } else if ((movieType === 'tv') && response.ok) {
             let result = await response.json();
             if (typeof (result) === 'object') {
                 this.setState({

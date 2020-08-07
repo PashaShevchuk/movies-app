@@ -37,7 +37,7 @@ const MovieCard = (props) => {
                         <div className={`movie-card ${isDarkTheme ? 'black' : ''}`}>
 
                             <div className="movie-card-img">
-                                <Link to={`${url}/${movie.id}`} title={title}>
+                                <Link to={`${url}/movie/${movie.id}`} title={title}>
                                     <img
                                         src={poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : `${defaultImage}`}
                                         alt={title}/>
@@ -57,7 +57,7 @@ const MovieCard = (props) => {
 
                             <div>
                                 <Link className={`movie-card-title${isDarkTheme ? '-black' : ''}`}
-                                      to={`${url}/${movie.id}`}
+                                      to={`${url}/movie/${movie.id}`}
                                       title={title}>
                                     {title}
                                 </Link>

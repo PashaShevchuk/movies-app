@@ -37,7 +37,7 @@ const TVShowCard = (props) => {
                         <div className={`tv-show-card ${isDarkTheme ? 'black' : ''}`}>
 
                             <div className="tv-show-card-img">
-                                <Link to={`${url}/${tvShow.id}`} title={name}>
+                                <Link to={`${url}/tv/${tvShow.id}`} title={name}>
                                     <img
                                         src={poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : `${defaultImage}`}
                                         alt={name}/>
@@ -57,7 +57,7 @@ const TVShowCard = (props) => {
 
                             <div>
                                 <Link className={`tv-show-card-title${isDarkTheme ? '-black' : ''}`}
-                                      to={`${url}/${tvShow.id}`}
+                                      to={`${url}/tv/${tvShow.id}`}
                                       title={name}>
                                     {name}
                                 </Link>
