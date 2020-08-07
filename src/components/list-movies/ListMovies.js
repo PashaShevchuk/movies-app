@@ -6,6 +6,7 @@ import Genres from "../genres/Genres";
 import {FetchError} from "../fetch-error/FetchError";
 import MovieCard from "../movie-card/MovieCard";
 import {Pagination} from "../pagination/Pagination";
+import './ListMovies.scss';
 
 class ListMovies extends Component {
     state = {
@@ -59,7 +60,7 @@ class ListMovies extends Component {
     render() {
         const {movies} = this.props;
         const {isLoading, error} = this.state;
-        let movieNumberPages = Math.floor(this.state.movieTotalResults / 20);
+        const movieNumberPages = Math.floor(this.state.movieTotalResults / 20);
         return (
             <div className="movie-container">
                 {
@@ -74,11 +75,11 @@ class ListMovies extends Component {
                 {
                     !isLoading && !error && <Genres genres={genresForRender}/>
                 }
+
                 <div className="card-container">
                     {
                         !!error && (<FetchError error={error}/>)
                     }
-
                     {
                         !isLoading && movies.map(movie => <MovieCard movie={movie} key={movie.id}/>)
                     }

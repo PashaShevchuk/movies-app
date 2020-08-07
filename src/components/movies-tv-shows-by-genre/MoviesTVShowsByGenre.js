@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {apiKey} from "../../constants";
-import {MoviesList} from "../movies-list/MoviesList";
 import {Pagination} from "../pagination/Pagination";
-import {TVShowList} from "../tv-show-list/TVShowList";
+import {ListByGenre} from "../list-by-genre/ListByGenre";
 
-class MoviesByGenre extends Component {
+class MoviesTVShowsByGenre extends Component {
     state = {
         movies: [],
         isLoading: false,
@@ -26,8 +25,8 @@ class MoviesByGenre extends Component {
     loadMovie = async () => {
         const {match: {params: {id}}, flag} = this.props;
         this.setState({isLoading: true});
-        let response = await fetch(`${flag 
-            ? `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&with_genres=${id}` 
+        let response = await fetch(`${flag
+            ? `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&with_genres=${id}`
             : `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${id}`}`);
         if (response.ok) {
             let result = await response.json();
@@ -69,20 +68,20 @@ class MoviesByGenre extends Component {
     render() {
         const {movies, isLoading, error} = this.state;
         const {flag} = this.props;
-        let movieNumberPages = Math.floor(this.state.movieTotalResults / 20);
-
+        const movieNumberPages = Math.floor(this.state.movieTotalResults / 20);
         return (
             <div>
                 {
-                    !isLoading && flag && <TVShowList tvShows={movies}
-                                                      isLoading={isLoading}
-                                                      error={error}/>
+                    !isLoading && flag && <ListByGenre tvShows={movies}
+                                                       isLoading={isLoading}
+                                                       error={error}
+                                                       flag/>
                 }
 
                 {
-                    !isLoading && !flag && <MoviesList movies={movies}
-                                                       isLoading={isLoading}
-                                                       error={error}/>
+                    !isLoading && !flag && <ListByGenre movies={movies}
+                                                        isLoading={isLoading}
+                                                        error={error}/>
                 }
 
                 {
@@ -95,4 +94,4 @@ class MoviesByGenre extends Component {
     }
 }
 
-export default MoviesByGenre;
+export default MoviesTVShowsByGenre;

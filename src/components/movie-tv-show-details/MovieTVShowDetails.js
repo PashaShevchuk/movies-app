@@ -5,9 +5,9 @@ import {FetchError} from "../fetch-error/FetchError";
 import {addToWatchlist, addTVShowToWatchlist} from "../../actions";
 import {MovieDetailsCard} from "../movie-details-card/MovieDetailsCard";
 import {TVShowDetailsCard} from "../tv-show-details-card/TVShowDetailsCard";
-import './MovieDetails.scss';
+import './MovieTVShowDetails.scss';
 
-class MovieDetails extends Component {
+class MovieTVShowDetails extends Component {
     state = {
         movie: null,
         tvShow: null,
@@ -66,7 +66,6 @@ class MovieDetails extends Component {
     render() {
         const {movie, tvShow, isLoading, error} = this.state;
         const {watchlist, watchlistTVShow} = this.props;
-
         return (
             <div className="movie-details">
                 {
@@ -113,4 +112,4 @@ const mapDispatchToProps = ({
     addTVShowToWatchlist
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieTVShowDetails);

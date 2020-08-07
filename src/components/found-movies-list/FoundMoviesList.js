@@ -1,13 +1,17 @@
 import React, {useEffect} from 'react';
-import TVShowCard from "../tv-show-card/TVShowCard";
+import MovieCard from "../movie-card/MovieCard";
 import {FetchError} from "../fetch-error/FetchError";
-import {allGenres} from "../../constants";
-import './TVShowList.scss';
 import Genres from "../genres/Genres";
+import {genresForRender} from "../../constants";
+import {Pagination} from "../pagination/Pagination";
+import './FoundMoviesList.scss';
 
-export const TVShowList = (props) => {
-    const {tvShows, isLoading, error} = props;
+export const FoundMoviesList = (props) => {
     useEffect(() => window.scrollTo(0, 0));
+
+    const {movies, isLoading, error, flag, totalResults, nextP, currentPage} = props;
+    const numberPages = Math.floor(totalResults / 20);
+
     return (
         <div className="movie-container">
             {
@@ -20,7 +24,7 @@ export const TVShowList = (props) => {
             }
 
             {
-                !isLoading && !error && <Genres genres={allGenres} flag/>
+                !isLoading && !error && !flag && <Genres genres={genresForRender}/>
             }
 
             <div className="card-container">
@@ -28,9 +32,16 @@ export const TVShowList = (props) => {
                     !!error && (<FetchError error={error}/>)
                 }
                 {
-                    !isLoading && tvShows.map(tvShow => <TVShowCard tvShow={tvShow} key={tvShow.id}/>)
+                    !isLoading && movies.map(movie => <MovieCard movie={movie} key={movie.id}/>)
                 }
             </div>
+
+            {
+                totalResults > 20 &&
+                <Pagination pages={numberPages}
+                            nextP={nextP}
+                            currentPage={currentPage}/>
+            }
         </div>
     );
 };

@@ -1,41 +1,22 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {
-    BrowserRouter as Router,
-    Route,
-    Switch,
-    Redirect
-} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
 import {apiKey} from "./constants";
-import {searchMovies, getMovies, getTVShows} from "./actions";
+import {searchMovies} from "./actions";
 import {DarkThemeContext} from "./context/DarkThemeContext";
 import {HeaderDesktopAndMobile} from "./components/heder-desktop-and-mobile/HeaderDesktopAndMobile";
-import {MoviesList} from "./components/movies-list/MoviesList";
-import {Pagination} from "./components/pagination/Pagination";
-import MovieDetails from "./components/movie-details/MovieDetails";
-import MoviesByGenre from "./components/movies-by-genre/MoviesByGenre";
+import ListMovies from "./components/list-movies/ListMovies";
+import ListTVShows from "./components/list-tv-shows/ListTVShows";
+import MovieTVShowDetails from "./components/movie-tv-show-details/MovieTVShowDetails";
+import MoviesTVShowsByGenre from "./components/movies-tv-shows-by-genre/MoviesTVShowsByGenre";
+import {FoundMoviesList} from "./components/found-movies-list/FoundMoviesList";
 import Watchlist from "./components/watchlist/Watchlist";
-import {TVShowList} from "./components/tv-show-list/TVShowList";
 import {AboutUs} from "./components/about-us/AboutUs";
 import {Footer} from "./components/footer/Footer";
-
 import './MainPage.scss';
 
 class MainPage extends Component {
     state = {
-        // For movies
-        isLoading: false,
-        error: '',
-        movieTotalResults: 0,
-        movieCurrentPage: 1,
-
-        // For TV shows
-        isTVShowsLoading: false,
-        errorTVShows: '',
-        TVShowsTotalResults: 0,
-        TVShowsCurrentPage: 1,
-
-        // To search movies
         isMovieSearch: false,
         errorSearch: '',
         searchTerm: '',
@@ -43,95 +24,6 @@ class MainPage extends Component {
         currentPage: 1,
     }
 
-    componentDidMount() {
-        this.loadMovies();
-        this.loadTVShows();
-    }
-
-//=================================== For movies =======================================================================
-
-    loadMovies = async () => {
-        const {getMovies} = this.props;
-        this.setState({isLoading: true});
-        let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`);
-        if (response.ok) {
-            let json = await response.json();
-            this.setState({movieTotalResults: json.total_results})
-            const {results} = json;
-            if (Array.isArray(results)) {
-                this.setState({
-                    isLoading: false,
-                    error: '',
-                });
-                getMovies(results)
-            }
-        } else {
-            this.setState({
-                isLoading: false,
-                error: response.status,
-            });
-        }
-    }
-
-    movieNextPage = async (pageNumber) => {
-        window.scrollTo(0, 0);
-        const {getMovies} = this.props;
-        let response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${pageNumber}`);
-        if (response.ok) {
-            let json = await response.json();
-            this.setState({movieTotalResults: json.total_results, movieCurrentPage: pageNumber})
-            const {results} = json;
-            if (Array.isArray(results)) {
-                getMovies(results)
-            }
-        }
-    }
-//______________________________________________________________________________________________________________________
-
-
-//=================================== For TV shows ====================================================================
-
-    loadTVShows = async () => {
-        const {getTVShows} = this.props;
-        this.setState({isTVShowsLoading: true});
-        let response = await fetch(`https://api.themoviedb.org/3/discover/tv/?api_key=${apiKey}`);
-        if (response.ok) {
-            let json = await response.json();
-            this.setState({TVShowsTotalResults: json.total_results})
-            const {results} = json;
-            if (Array.isArray(results)) {
-                this.setState({
-                    isTVShowsLoading: false,
-                    errorTVShows: '',
-                });
-                getTVShows(results)
-            }
-        } else {
-            this.setState({
-                isTVShowsLoading: false,
-                errorTVShows: response.status,
-            });
-        }
-    }
-
-    TVShowsNextPage = async (pageNumber) => {
-        window.scrollTo(0, 0);
-        const {getTVShows} = this.props;
-        let response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&page=${pageNumber}`);
-        if (response.ok) {
-            let json = await response.json();
-            this.setState({TVShowsTotalResults: json.total_results, TVShowsCurrentPage: pageNumber})
-            const {results} = json;
-            if (Array.isArray(results)) {
-                getTVShows(results)
-            }
-        }
-    }
-
-//______________________________________________________________________________________________________________________
-
-
-//=================================== To search movies =================================================================
     handleChange = (e) => {
         this.setState({searchTerm: e.target.value})
     }
@@ -176,13 +68,7 @@ class MainPage extends Component {
         }
     }
 
-//______________________________________________________________________________________________________________________
-
     render() {
-        let movieNumberPages = Math.floor(this.state.movieTotalResults / 20);     // For movies
-        let tvShowsNumberPages = Math.floor(this.state.TVShowsTotalResults / 20); // For TV shows
-        let numberPages = Math.floor(this.state.totalResults / 20);               // To search movies
-
         return (
             <DarkThemeContext.Consumer>
                 {
@@ -191,96 +77,71 @@ class MainPage extends Component {
                         return (
                             <div className={`main-page-container${isDarkTheme ? '-black' : ''}`}>
                                 <Router>
-
                                     <HeaderDesktopAndMobile searchTerm={this.state.searchTerm}
                                                             handleSubmit={this.handleSubmit}
                                                             handleChange={this.handleChange}
                                     />
-
                                     <Switch>
-
                                         <Route path="/movies" exact>
-                                            <MoviesList movies={this.props.movies}
-                                                        isLoading={this.state.isLoading}
-                                                        error={this.state.error}
-                                            />
-                                            {
-                                                this.state.movieTotalResults > 20 &&
-                                                <Pagination pages={movieNumberPages}
-                                                            nextP={this.movieNextPage}
-                                                            currentPage={this.state.movieCurrentPage}/>
-                                            }
+                                            <ListMovies/>
                                         </Route>
 
                                         <Route path="/movies/genre/:gId/:movieType/:id"
                                                render={(routerProps) => {
-                                                   return (<MovieDetails {...routerProps} />);
+                                                   return (<MovieTVShowDetails {...routerProps} />);
                                                }}
                                         />
 
                                         <Route path="/movies/genre/:id"
                                                render={(routerProps) => {
-                                                   return (<MoviesByGenre {...routerProps} />);
+                                                   return (<MoviesTVShowsByGenre {...routerProps} />);
                                                }}
                                         />
 
                                         <Route path="/movies/:movieType/:id"
                                                render={(routerProps) => {
-                                                   return (<MovieDetails {...routerProps} />);
+                                                   return (<MovieTVShowDetails {...routerProps} />);
                                                }}
                                         />
 
-
                                         <Route path="/tv-shows" exact>
-                                            <TVShowList tvShows={this.props.tvShows}
-                                                        isLoading={this.state.isTVShowsLoading}
-                                                        error={this.state.errorTVShows}
-                                            />
-                                            {
-                                                this.state.TVShowsTotalResults > 20 &&
-                                                <Pagination pages={tvShowsNumberPages}
-                                                            nextP={this.TVShowsNextPage}
-                                                            currentPage={this.state.TVShowsCurrentPage}/>
-                                            }
+                                            <ListTVShows/>
                                         </Route>
 
                                         <Route path="/tv-shows/genre/:gId/:movieType/:id"
                                                render={(routerProps) => {
-                                                   return (<MovieDetails {...routerProps} />);
+                                                   return (<MovieTVShowDetails {...routerProps} />);
                                                }}
                                         />
 
                                         <Route path="/tv-shows/genre/:id"
                                                render={(routerProps) => {
-                                                   return (<MoviesByGenre {...routerProps} flag/>);
+                                                   return (<MoviesTVShowsByGenre {...routerProps} flag/>);
                                                }}
                                         />
 
                                         <Route path="/tv-shows/:movieType/:id"
                                                render={(routerProps) => {
-                                                   return (<MovieDetails {...routerProps} />);
+                                                   return (<MovieTVShowDetails {...routerProps} />);
                                                }}
                                         />
 
-
                                         <Route path="/found-movies/:movieType/:id"
                                                render={(routerProps) => {
-                                                   return (<MovieDetails {...routerProps} />);
+                                                   return (<MovieTVShowDetails {...routerProps} />);
                                                }}
                                         />
 
                                         <Route path="/found-movies" exact>
-                                            <MoviesList movies={this.props.foundMovies}
-                                                        isLoading={this.state.isMovieSearch}
-                                                        error={this.state.errorSearch}
-                                                        flag
+                                            <FoundMoviesList movies={this.props.foundMovies}
+                                                             isLoading={this.state.isMovieSearch}
+                                                             error={this.state.errorSearch}
+                                                             flag
+                                                             totalResults={this.state.totalResults}
+                                                             nextP={this.nextPage}
+                                                             currentPage={this.state.currentPage}
+
                                             />
-                                            {
-                                                this.state.totalResults > 20 &&
-                                                <Pagination pages={numberPages}
-                                                            nextP={this.nextPage}
-                                                            currentPage={this.state.currentPage}/>
-                                            }
                                         </Route>
 
                                         <Route path="/watchlist" exact>
@@ -289,13 +150,13 @@ class MainPage extends Component {
 
                                         <Route path="/watchlist/:movieType/:id"
                                                render={(routerProps) => {
-                                                   return (<MovieDetails {...routerProps} />);
+                                                   return (<MovieTVShowDetails {...routerProps} />);
                                                }}
                                         />
 
                                         <Route path="/watchlist/:movieType/:id"
                                                render={(routerProps) => {
-                                                   return (<MovieDetails {...routerProps} />);
+                                                   return (<MovieTVShowDetails {...routerProps} />);
                                                }}
                                         />
 
@@ -306,9 +167,7 @@ class MainPage extends Component {
                                         <Redirect from="/" to="/movies" exact/>
 
                                     </Switch>
-
                                     <Footer/>
-
                                 </Router>
                             </div>
                         )
@@ -319,20 +178,15 @@ class MainPage extends Component {
     }
 }
 
-
 const mapStateToProps = (store) => {
     const {moviesReducer} = store;
     return {
-        movies: moviesReducer.movies,
-        tvShows: moviesReducer.tvShows,
         foundMovies: moviesReducer.foundMovies
     }
 };
 
 const mapDispatchToProps = ({
-    getMovies,
     searchMovies,
-    getTVShows
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
