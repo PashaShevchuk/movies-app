@@ -81,7 +81,6 @@ class MainPage extends Component {
             let json = await response.json();
             this.setState({movieTotalResults: json.total_results, movieCurrentPage: pageNumber})
             const {results} = json;
-            console.log(this.state.movieCurrentPage);
             if (Array.isArray(results)) {
                 getMovies(results)
             }

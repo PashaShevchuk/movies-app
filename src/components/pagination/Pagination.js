@@ -2,7 +2,7 @@ import React from 'react';
 import './Pagination.scss';
 
 export const Pagination = (props) => {
-    const {pages, nextP, currentPage} = props;
+    let {pages, nextP, currentPage} = props;
 
     let items = [];
     let maxPages = pages;

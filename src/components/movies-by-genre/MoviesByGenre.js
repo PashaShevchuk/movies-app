@@ -36,7 +36,8 @@ class MoviesByGenre extends Component {
                 this.setState({
                     isLoading: false,
                     error: '',
-                    movies: result.results
+                    movies: result.results,
+                    movieCurrentPage: 1,
                 });
             }
         } else {
@@ -59,7 +60,7 @@ class MoviesByGenre extends Component {
             const {results} = json;
             if (Array.isArray(results)) {
                 this.setState({
-                    movies: results
+                    movies: results,
                 });
             }
         }
@@ -86,7 +87,7 @@ class MoviesByGenre extends Component {
 
                 {
                     this.state.movieTotalResults > 20 && <Pagination pages={movieNumberPages}
-                                                                     nextPage={this.movieNextPage}
+                                                                     nextP={this.movieNextPage}
                                                                      currentPage={this.state.movieCurrentPage}/>
                 }
             </div>
