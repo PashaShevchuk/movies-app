@@ -2,10 +2,10 @@ import React from 'react';
 import './Pagination.scss';
 
 export const Pagination = (props) => {
-    const [currentPage, setCurrentPage] = React.useState(props.currentPage);
+    const {pages, nextP, currentPage} = props;
 
     let items = [];
-    let maxPages = props.pages;
+    let maxPages = pages;
     let leftSide = currentPage - 2;
     if (leftSide <= 0) leftSide = 1;
 
@@ -18,8 +18,8 @@ export const Pagination = (props) => {
                 key={i}
                 className={(i === currentPage ? 'round-effect active' : 'round-effect')}
                 onClick={() => {
-                    setCurrentPage(i);
-                    props.nextPage(i);
+
+                    nextP(i);
                 }}>
                 {i}
             </div>
@@ -28,15 +28,15 @@ export const Pagination = (props) => {
 
     const nextPage = () => {
         if (currentPage < maxPages) {
-            setCurrentPage(currentPage + 1)
-            props.nextPage(currentPage + 1)
+
+            nextP(currentPage + 1)
         }
     }
 
     const prevPage = () => {
         if (currentPage > 1) {
-            setCurrentPage(currentPage - 1)
-            props.nextPage(currentPage - 1)
+
+            nextP(currentPage - 1)
         }
     }
 

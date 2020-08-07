@@ -81,6 +81,7 @@ class MainPage extends Component {
             let json = await response.json();
             this.setState({movieTotalResults: json.total_results, movieCurrentPage: pageNumber})
             const {results} = json;
+            console.log(this.state.movieCurrentPage);
             if (Array.isArray(results)) {
                 getMovies(results)
             }
@@ -150,6 +151,7 @@ class MainPage extends Component {
                 this.setState({
                     isMovieSearch: false,
                     errorSearch: '',
+                    currentPage: 1
                 });
                 searchMovies(results)
             } else {
@@ -206,7 +208,7 @@ class MainPage extends Component {
                                             {
                                                 this.state.movieTotalResults > 20 &&
                                                 <Pagination pages={movieNumberPages}
-                                                            nextPage={this.movieNextPage}
+                                                            nextP={this.movieNextPage}
                                                             currentPage={this.state.movieCurrentPage}/>
                                             }
                                         </Route>
@@ -238,7 +240,7 @@ class MainPage extends Component {
                                             {
                                                 this.state.TVShowsTotalResults > 20 &&
                                                 <Pagination pages={tvShowsNumberPages}
-                                                            nextPage={this.TVShowsNextPage}
+                                                            nextP={this.TVShowsNextPage}
                                                             currentPage={this.state.TVShowsCurrentPage}/>
                                             }
                                         </Route>
@@ -277,7 +279,7 @@ class MainPage extends Component {
                                             {
                                                 this.state.totalResults > 20 &&
                                                 <Pagination pages={numberPages}
-                                                            nextPage={this.nextPage}
+                                                            nextP={this.nextPage}
                                                             currentPage={this.state.currentPage}/>
                                             }
                                         </Route>
