@@ -5,8 +5,8 @@ import {apiKey} from "./constants";
 import {searchMovies} from "./actions";
 import {DarkThemeContext} from "./context/DarkThemeContext";
 import {HeaderDesktopAndMobile} from "./components/heder-desktop-and-mobile/HeaderDesktopAndMobile";
-import ListMovies from "./components/list-movies/ListMovies";
-import ListTVShows from "./components/list-tv-shows/ListTVShows";
+import MoviesList from "./components/movies-list/MoviesList";
+import TVShowsList from "./components/tv-shows-list/TVShowsList";
 import MovieTVShowDetails from "./components/movie-tv-show-details/MovieTVShowDetails";
 import MoviesTVShowsByGenre from "./components/movies-tv-shows-by-genre/MoviesTVShowsByGenre";
 import {FoundMoviesList} from "./components/found-movies-list/FoundMoviesList";
@@ -29,8 +29,8 @@ class MainPage extends Component {
     }
 
     handleSubmit = async (e) => {
-        if (this.state.searchTerm === '') return;
         e.preventDefault()
+        if (this.state.searchTerm === '') return;
         const {searchMovies} = this.props;
         this.setState({isMovieSearch: true});
         let response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${this.state.searchTerm}`);
@@ -82,8 +82,10 @@ class MainPage extends Component {
                                                             handleChange={this.handleChange}
                                     />
                                     <Switch>
+                                        <Redirect from="/" to="/movies" exact/>
+
                                         <Route path="/movies" exact>
-                                            <ListMovies/>
+                                            <MoviesList/>
                                         </Route>
 
                                         <Route path="/movies/genre/:gId/:movieType/:id"
@@ -105,7 +107,7 @@ class MainPage extends Component {
                                         />
 
                                         <Route path="/tv-shows" exact>
-                                            <ListTVShows/>
+                                            <TVShowsList/>
                                         </Route>
 
                                         <Route path="/tv-shows/genre/:gId/:movieType/:id"
@@ -139,9 +141,7 @@ class MainPage extends Component {
                                                              flag
                                                              totalResults={this.state.totalResults}
                                                              nextP={this.nextPage}
-                                                             currentPage={this.state.currentPage}
-
-                                            />
+                                                             currentPage={this.state.currentPage}/>
                                         </Route>
 
                                         <Route path="/watchlist" exact>
@@ -164,8 +164,6 @@ class MainPage extends Component {
                                             <AboutUs/>
                                         </Route>
 
-                                        <Redirect from="/" to="/movies" exact/>
-
                                     </Switch>
                                     <Footer/>
                                 </Router>
@@ -180,13 +178,9 @@ class MainPage extends Component {
 
 const mapStateToProps = (store) => {
     const {moviesReducer} = store;
-    return {
-        foundMovies: moviesReducer.foundMovies
-    }
+    return {foundMovies: moviesReducer.foundMovies}
 };
 
-const mapDispatchToProps = ({
-    searchMovies,
-});
+const mapDispatchToProps = ({searchMovies});
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

@@ -49,7 +49,7 @@ const MovieDetailsCardComponent = (props) => {
     }
 
     const goBack = () => {
-        history.go(-1)
+        history.go(-1);
     };
 
     return (

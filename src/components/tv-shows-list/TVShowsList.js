@@ -7,7 +7,7 @@ import {FetchError} from "../fetch-error/FetchError";
 import {Pagination} from "../pagination/Pagination";
 import TVShowCard from "../tv-show-card/TVShowCard";
 
-class ListMovies extends Component {
+class TVShowsList extends Component {
     state = {
         isTVShowsLoading: false,
         errorTVShows: '',
@@ -105,4 +105,4 @@ const mapDispatchToProps = ({
     getTVShows,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListMovies);
+export default connect(mapStateToProps, mapDispatchToProps)(TVShowsList);

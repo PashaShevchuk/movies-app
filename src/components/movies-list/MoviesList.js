@@ -6,9 +6,9 @@ import Genres from "../genres/Genres";
 import {FetchError} from "../fetch-error/FetchError";
 import MovieCard from "../movie-card/MovieCard";
 import {Pagination} from "../pagination/Pagination";
-import './ListMovies.scss';
+import './MoviesList.scss';
 
-class ListMovies extends Component {
+class MoviesList extends Component {
     state = {
         isLoading: false,
         error: '',
@@ -17,8 +17,20 @@ class ListMovies extends Component {
     }
 
     componentDidMount() {
-        this.loadMovies();
+        if (this.state.movieCurrentPage >= 1) this.loadMovies();
     }
+
+    // shouldComponentUpdate(nextProps, nextState, nextContext) {
+    //     console.log('State', this.state);
+    //     console.log('nextState', nextState);
+    //     // return (this.props.movies[0].id !== nextProps.movies[0].id);
+    //     return true
+    // }
+
+    // componentDidUpdate(prevProps, prevState, snapshot) {
+    //     console.log('State', this.state);
+    //     console.log('prevState', prevState);
+    // }
 
     loadMovies = async () => {
         const {getMovies} = this.props;
@@ -106,4 +118,4 @@ const mapDispatchToProps = ({
     getMovies,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListMovies);
+export default connect(mapStateToProps, mapDispatchToProps)(MoviesList);

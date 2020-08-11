@@ -17,28 +17,24 @@ const defaultValue = {
 
 const moviesReducer = (store = defaultValue, action) => {
     switch (action.type) {
-
         case GET_MOVIES: {
             return {
                 ...store,
                 movies: action.payload
             }
         }
-
         case GET_TV_SHOWS: {
             return {
                 ...store,
                 tvShows: action.payload
             }
         }
-
         case SEARCH_MOVIES: {
             return {
                 ...store,
                 foundMovies: action.payload
             }
         }
-
         case ADD_TO_WATCHLIST: {
             const {payload} = action;
             const {watchlist} = store;
@@ -57,7 +53,6 @@ const moviesReducer = (store = defaultValue, action) => {
                 }
             } else return store;
         }
-
         case ADD_TV_SHOW_TO_WATCHLIST: {
             const {payload} = action;
             const {watchlistTVShow} = store;

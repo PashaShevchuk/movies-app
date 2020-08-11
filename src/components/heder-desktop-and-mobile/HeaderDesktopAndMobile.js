@@ -14,14 +14,16 @@ export const HeaderDesktopAndMobile = (props) => {
                 (value) => {
                     const {isDarkTheme} = value;
                     return (
-                        <div className={`header${isDarkTheme? '-black' : ''} navbar`}>
+                        <div className={`header${isDarkTheme ? '-black' : ''} navbar`}>
                             <div className="container">
 
                                 <div className="d-flex align-items-center">
                                     <Link to="/movies">
                                         <img src={logo} className="header-logo" alt="logotype"/>
                                     </Link>
-                                    <div className="header-name">MOVIES<br/>TIME</div>
+                                    <Link to="/movies" className="header-name">
+                                        <div className="header-name">MOVIES<br/>TIME</div>
+                                    </Link>
                                 </div>
 
                                 <BurgerMenu handleSubmit={handleSubmit}

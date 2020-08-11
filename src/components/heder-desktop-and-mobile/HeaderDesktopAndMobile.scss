@@ -24,7 +24,8 @@
   }
 
   &-name:hover {
-    cursor: default;
+    text-decoration: none;
+    cursor: pointer;
   }
 
   &-links-wrapper {
