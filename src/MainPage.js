@@ -12,6 +12,7 @@ import MoviesTVShowsByGenre from "./components/movies-tv-shows-by-genre/MoviesTV
 import {FoundMoviesList} from "./components/found-movies-list/FoundMoviesList";
 import Watchlist from "./components/watchlist/Watchlist";
 import {AboutUs} from "./components/about-us/AboutUs";
+import {NotFoundPage} from "./components/not-found-page/NotFoundPage";
 import {Footer} from "./components/footer/Footer";
 import './MainPage.scss';
 
@@ -162,6 +163,10 @@ class MainPage extends Component {
 
                                         <Route path="/about-us" exact>
                                             <AboutUs/>
+                                        </Route>
+
+                                        <Route path="*">
+                                            <NotFoundPage/>
                                         </Route>
 
                                     </Switch>

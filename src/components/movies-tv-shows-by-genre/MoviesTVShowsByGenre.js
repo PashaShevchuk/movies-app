@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {apiKey} from "../../constants";
 import {Pagination} from "../pagination/Pagination";
 import {ListByGenre} from "../list-by-genre/ListByGenre";
+import './MoviesTVShowsByGenre.scss';
 
 class MoviesTVShowsByGenre extends Component {
     state = {
@@ -70,7 +71,7 @@ class MoviesTVShowsByGenre extends Component {
         const {flag} = this.props;
         const movieNumberPages = Math.floor(this.state.movieTotalResults / 20);
         return (
-            <div>
+            <div className="genre-container">
                 {
                     !isLoading && flag && <ListByGenre tvShows={movies}
                                                        isLoading={isLoading}

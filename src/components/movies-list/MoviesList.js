@@ -17,20 +17,8 @@ class MoviesList extends Component {
     }
 
     componentDidMount() {
-        if (this.state.movieCurrentPage >= 1) this.loadMovies();
+        this.loadMovies();
     }
-
-    // shouldComponentUpdate(nextProps, nextState, nextContext) {
-    //     console.log('State', this.state);
-    //     console.log('nextState', nextState);
-    //     // return (this.props.movies[0].id !== nextProps.movies[0].id);
-    //     return true
-    // }
-
-    // componentDidUpdate(prevProps, prevState, snapshot) {
-    //     console.log('State', this.state);
-    //     console.log('prevState', prevState);
-    // }
 
     loadMovies = async () => {
         const {getMovies} = this.props;
