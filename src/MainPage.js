@@ -139,10 +139,11 @@ class MainPage extends Component {
                                             <FoundMoviesList movies={this.props.foundMovies}
                                                              isLoading={this.state.isMovieSearch}
                                                              error={this.state.errorSearch}
-                                                             flag
                                                              totalResults={this.state.totalResults}
                                                              nextP={this.nextPage}
-                                                             currentPage={this.state.currentPage}/>
+                                                             currentPage={this.state.currentPage}
+                                                             searchTerm={this.state.searchTerm}
+                                                             flag/>
                                         </Route>
 
                                         <Route path="/watchlist" exact>
@@ -170,7 +171,9 @@ class MainPage extends Component {
                                         </Route>
 
                                     </Switch>
+
                                     <Footer/>
+
                                 </Router>
                             </div>
                         )

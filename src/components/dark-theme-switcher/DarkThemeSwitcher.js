@@ -3,6 +3,13 @@ import {DarkThemeContext} from "../../context/DarkThemeContext";
 import './DarkThemeSwitcher.scss';
 
 export const DarkThemeSwitcher = () => {
+    const goUp = () => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    };
     return (
         <DarkThemeContext.Consumer>
             {
@@ -12,7 +19,7 @@ export const DarkThemeSwitcher = () => {
                         <div className="d-flex">
                             <div className="dark-theme-switcher-title">Dark mode:</div>
                             <label className="switch">
-                                <input type="checkbox" onChange={toggleTheme}/>
+                                <input type="checkbox" onChange={toggleTheme} onClick={goUp}/>
                                 <div className="slider round"/>
                                 <div className="switch-on">ON</div>
                                 <div className="switch-off">OFF</div>

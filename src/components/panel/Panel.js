@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {DarkThemeContext} from "../../context/DarkThemeContext";
 import Chevron from '../../assets/chevron-bottom.png';
-
 import './Panel.scss';
 
 export class Panel extends Component {

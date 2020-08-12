@@ -124,6 +124,7 @@
 }
 
 .social-icons a:active, .social-icons a:focus, .social-icons a:hover {
+  cursor: pointer;
   color: #fff;
   background-color: #29aafe
 }
@@ -169,7 +170,6 @@
   text-align: left;
 }
 
-
 @media screen and (max-width: 768px) {
   .social-icons li.title {
     display: block;
@@ -185,5 +185,3 @@
     text-align: center;
   }
 }
-
-

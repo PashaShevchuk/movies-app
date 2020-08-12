@@ -6,7 +6,6 @@ import defaultImage from '../../assets/default-movie-portrait.jpg';
 import watchListIcon from '../../assets/watch-list-icon-white.png'
 import watchListIconRed from '../../assets/watch-list-icon-red.png'
 import homePageIcon from '../../assets/home-solid-white.png'
-
 import './TVShowDetailsCard.scss';
 
 export const TVShowDetailsCardComponent = (props) => {

@@ -9,7 +9,7 @@ import './FoundMoviesList.scss';
 export const FoundMoviesList = (props) => {
     useEffect(() => window.scrollTo(0, 0));
 
-    const {movies, isLoading, error, flag, totalResults, nextP, currentPage} = props;
+    const {movies, isLoading, error, flag, totalResults, nextP, currentPage, searchTerm} = props;
     const numberPages = Math.floor(totalResults / 20);
 
     return (
@@ -31,8 +31,19 @@ export const FoundMoviesList = (props) => {
                 {
                     !!error && (<FetchError error={error}/>)
                 }
+
                 {
-                    !isLoading && movies.map(movie => <MovieCard movie={movie} key={movie.id}/>)
+                    !isLoading && !movies.length && (
+                        <div className="no-results">
+                            No results were found for "{searchTerm}".<br/>
+                            Make sure that the title is entered correctly, or try entering at least one word from the
+                            title.
+                        </div>
+                    )
+                }
+
+                {
+                    !isLoading && !!movies.length && movies.map(movie => <MovieCard movie={movie} key={movie.id}/>)
                 }
             </div>
 
