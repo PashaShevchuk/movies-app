@@ -31,7 +31,7 @@ class MainPage extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault()
-        if (this.state.searchTerm === '') return;
+        if (!this.state.searchTerm.trim().length) return;
         const {searchMovies} = this.props;
         this.setState({isMovieSearch: true});
         let response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${this.state.searchTerm}`);
